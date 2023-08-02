@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>鼠标滚动横向滚动条</title>
+    <script src="https://unpkg.com/vue@3.0.7/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- v-sz-ob="handleChange" -->
+      <div class="demo scroll-container">
+        <!-- <div class="v-scroll"> -->
+        <!-- XScrol1> -->
+        <div class="card"><img src="./images/1.jpg" /></div>
+        <div class="card"><img src="./images/test.jpg" /></div>
+        <div class="card"><img src="./images/2.jpg" /></div>
+        <div class="card"><img src="./images/meixi.jpeg" /></div>
+        <div class="card"><img src="./images/meixi.png" /></div>
+        <div class="card"><img src="./images/gtx1.jpg" /></div>
+        <!-- XScrol1> -->
+        <!-- </div> -->
+      </div>
+    </div>
+    <!-- 鼠标滚动横向滚动条 -->
+
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+    <!-- <script src="https://unpkg.com/vue@next"></script> -->
+    <script type="module">
+      const app = Vue.createApp({
+        data() {
+          return {
+            message: "Hello, Vue 3!",
+            s: { w: 0, h: 0 }
+          };
+        },
+        methods: {
+          handleChange(size) {
+            s.w = size.width;
+            s.h = size.height;
+          }
+        }
+      });
+
+      app.mount("#app");
+    </script>
+    <style scoped>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --w: 500px;
+      }
+      #app {
+        width: 100%;
+        height: 800px;
+        overflow: hidden;
+      }
+
+      /* .v-scroll {
+         height : calc(v-bind("s.w") * 1px);
+      width:var(--w);
+        overflow: auto;
+        position: relative;
+      } */
+      .content .card {
+        height: calc(v-bind("s.h") * 1px);
+        position: absolute;
+      }
+      .scroll-container {
+        height: 100%;
+        overflow: auto;
+        transform-origin: 0 0;
+        transform: translateY(var(--w)) rotate(-90deg);
+      }
+      .container {
+        /* width: auto; */
+        overflow: auto;
+      }
+      .card {
+        /* float: left; */
+        width: 500px;
+        height: 500px;
+        transform: rotate(90deg);
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </body>
+</html>

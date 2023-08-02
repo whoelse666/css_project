@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Object.defineProperty</title>
+</head>
+
+<body>
+  <div>
+    {{name}}
+
+  </div>
+  <p>
+    {{age}}
+
+  </p>
+  <script type="text/javascript">
+    let data = {
+      name: 'zzz'
+    }
+    let data2 = {
+      age: 18
+    }
+    class Dep {
+      constructor() {
+        this.sub = []
+      }
+      addSub(dep) {
+        // dep 就是   dp = new Dep()
+        this.sub.push(dep)
+      }
+      notify() {
+        this.sub.forEach(dep => dep.update())
+      }
+    }
+
+    Dep.target = null
+
+
+    class Watcher {
+      constructor(obj, key, cb) {
+        // 将 Dep.target 指向自己
+        // 然后触发属性的 getter 添加监听
+        // 最后将 Dep.target 置空
+        Dep.target = this
+        this.cb = cb
+        this.obj = obj
+        this.key = key
+        this.value = obj[key]
+        Dep.target = null
+      }
+
+      update() {
+        // 获得新值
+        this.value = this.obj[this.key]
+        // 调用 update 方法更新 Dom
+        this.cb(this.value)
+      }
+    }
+    /**
+     * 观察对象属性
+     * @param {object} obj 要观察的对象
+     * @return void
+     */
+    function observe(obj) {
+      /* 判断类型的几种方法
+       Object.prototype.toString.call(obj) =='[object Object]' :最准确的判断
+       typeof: 只能准确判断基本类型 ,判断数组和null 也会显示 "object"
+      instanceof: 只能用于判断对象，基本数据类型值不能判断，所以也不能准确的判断出所有的类型！
+      (new Function()).constructor == Function
+      :　constructor能判断基本数据类型string、number、boolean和对象类型（array、function等等），但是它不能判断undefined和null, 判断undefined和null时，会报错。
+      */
+      if (!obj || obj.toString(obj) !== '[object Object]') {
+        return
+      }
+      Object.keys(obj).forEach(key => {
+        defineReactive(obj, key, obj[key])
+      })
+    }
+
+
+    function defineReactive(obj, key, val) {
+      observe(val); //递归观察
+      let dp = new Dep()
+      Object.defineProperty(obj, key, {
+        configurable: true,
+        enumerable: true,
+        get: function () {
+          console.log('%c 打印:', 'font-size: 14px; color: blue', 'get value=' + val)
+          // 将 Watcher 添加到订阅
+          if (Dep.target) {
+            dp.addSub(Dep.target)
+          }
+          return val
+        },
+        set(newVal) {
+          console.log('%c 打印:', 'font-size: 14px; color: blue', 'change newVal=' + newVal)
+          val = newVal;
+          // 执行 watcher 的 update 方法
+          dp.notify()
+        }
+      })
+    }
+
+    function update(value) {
+      document.querySelector('div').innerText = value
+    }
+
+    function update2(value) {
+      document.querySelector('p').innerText = value
+    }
+
+    observe(data)
+    observe(data2)
+    // 模拟解析到 `{{name}}` 触发的操作
+    new Watcher(data, 'name', update)
+    new Watcher(data2, 'age', update2)
+
+    let name = data.name // -> get value
+    let age = data2.age // -> get value
+    data.name = 'yyy'
+    data2.age = 100
+  </script>
+</body>
+
+</html>

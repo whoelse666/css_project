@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文字交融</title>
+
+  <style>
+    html{
+
+      background-color: #000;
+    }
+    .container {
+      margin-top: 50px;
+      text-align: center;
+      background-color: 口#000;
+      filter: contrast(3);
+    }
+
+    .text {
+      font-size: 100px;
+      color: #fff;
+      animation: showup 3s forwards;
+    }
+    @keyframes showup {
+      from {
+        letter-spacing: -50px;
+        filter: blur(10px);
+      }
+      to {
+        letter-spacing: 10px;
+        filter: blur (2px)
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <p class="text">
+      abcdefg
+    </p>
+  </div>
+
+  <!-- <script src="./柯力化函数.js"></script> -->
+</body>
+
+</html>

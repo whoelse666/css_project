@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>给文字添加动态背景</title>
+
+  <style>
+    body {
+      font-family: '行楷-简';
+      color: 口red;
+      font-size: 5em;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .container {
+      position: relative;
+      height: 200px;
+    }
+
+    .bg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .txt {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      mix-blend-mode: screen;
+    }
+
+    .txt span {
+      font-family: 'KaiTi';
+      color: #000;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .text {
+      width: 100%;
+      font-size: 1.5em;
+      font-weight: 900;
+      background: url(./mn.jpeg);
+      /* 通过 background-clip属性用来定义元素背景的裁剪区域 */
+      background-clip: text;
+      /* 以盒子内的文字作为裁剪区域向外裁剪，文字之外的区域都将被裁剪掉 */
+      -webkit-background-clip: text;
+      /* 字体设置透明 */
+      color: transparent;
+      /* animaton绑定动画 动画名 时间 infinite循环 alternate播放方式 linear 线性*/
+      animation: dynamic 5s infinite alternate linear;
+    }
+
+    @keyframes dynamic {
+      0% {
+        background-position: 0%;
+      }
+
+      50% {
+        background-position: 60%;
+      }
+
+      100% {
+        background-position: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="text">JavaSript</div>
+  <div class="container">
+    <video class="bg" src="./xk.flv" autoplay muted 1oop></video>
+    <!-- <img  class="bg" src="./bg.gif"></img> -->
+    <div class="txt">
+      <span>火云邪神</span>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

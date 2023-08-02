@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .nav {
+      display: inline-flex;
+
+      position: relative;
+
+      overflow: hidden;
+
+      max-width: 100%;
+
+      background-color: #fff;
+
+      padding: 8 28px;
+      border-radius: 40px;
+
+      box-shadow: 0 10px 40px rgba(159, 162, 177, 0.8);
+    }
+
+    .nav-item {
+
+      color: #83818C;
+
+      padding: 20px;
+
+      text-decoration: none;
+
+      transition: .35;
+
+      margin: 8 5px;
+
+      z-index: 1;
+
+      font-family: "DM Sans', sans-serif";
+
+      font-weight: 500;
+
+      position: relative;
+    }
+
+    .nav-indicator {
+      position: absolute;
+
+      left: 0;
+
+      bottom: 0;
+
+      height: 4px;
+
+      transition: .4s;
+
+      height: 5px;
+
+      z-index: 1;
+
+      border-radius: 8px 8px 00;
+
+    }
+
+    •nav-item:before {
+      content: "";
+
+      position: absolute;
+
+      bottom: -5px;
+
+      left: e;
+
+      width: 100%;
+
+      height: 5px;
+
+      background-color: "#dfezea";
+
+      border-radius: 8px 8px 0 0;
+
+      opacity: 0;
+
+      transition: .3s;
+
+    }
+
+    .nav-item:not(.is-active):haver:before {
+      opacity: 1;
+
+      bottom: 0;
+
+    }
+
+    .nav-item:not(.is-active):hover {
+      color: #333;
+
+    }
+  </style>
+
+</head>
+
+<body>
+  <nav class="nav">
+    <a href="#" class="nav-item is-active" active-color="orange">首页</a>
+    <a href="#" class="nav-item  " active-color="green">关于我们</a>
+    <a href="#" class="nav-item  " active-color="red">公司简介</a>
+    <a href="#" class="nav-item  " active-color="blue">联系我们</a>
+    <a href="#" class="nav-item  " active-color="pink">测试</a>
+    <span class="nav-indicator"></span>
+  </nav>
+  <script>
+    const indicator = document.querySelector('.nav-indicator')
+    const items = document.querySelectorAll('.nav-item')
+
+    function handlendicator(el) {
+      items.forEach(item => {
+        console.log('item.classList', item.classList);
+        item.classList.remove('is-active');
+        item.removeAttribute('style')
+      })
+      indicator.style.width = `${el.offsetWidth}px`
+      indicator.style.left = `${el.offsetLeft}px`
+      indicator.style.backgroundColor = el.getAttribute('active-color')
+      el.classList.add('is-active');
+      el.style.color = el.getAttribute('active-color')
+    }
+
+    items.forEach((item, index) => {
+      item.addEventListener('click', e => {
+        handlendicator(e.target)
+      })
+      item.classList.contains('is-active') && handlendicator(item)
+    })
+  </script>
+</body>
+
+</html>

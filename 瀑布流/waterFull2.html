@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .box {
+      width: 100%;
+      padding: 10px;
+      column-count: 3;
+      column-gap: 10px;
+    }
+
+    .box div {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .box div img {
+      width: 100%;
+      height: auto;
+      vertical-align: middle;
+    }
+
+    .footer {
+      height: 40px;
+      background-color: orange;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+
+  </div>
+  <div class="footer"></div>
+
+  <script>
+    const box = document.querySelector('.box')
+    const footer = document.querySelector('.footer')
+
+    function mock() {
+      // return './0' + parseInt(Math.random() * 5 + 1) + '.png'
+      return  '../images/1.jpg'
+    }
+
+    function loadMore() {
+      const list = []
+      for (let i = 0; i < 20; i++) {
+        list.push(mock())
+      }
+      let html = ''
+      list.forEach(i => {
+        const div = document.createElement('div')
+        div.innerHTML = `<img src=${i} />`
+        box.appendChild(div)
+      })
+    }
+
+    loadMore()
+
+    var observer = new IntersectionObserver(() => {
+      setTimeout(() => {
+        loadMore()
+      }, 1000)
+    }, {});
+
+    observer.observe(footer);
+
+  </script>
+</body>
+
+</html>

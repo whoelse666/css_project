@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: #222;
+      }
+      .container {
+        width: 90%;
+        margin-top: 1em;
+        color: #f0f0f0;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        display: grid;
+        row-gap: 20px;
+        column-gap: 20px;
+        text-align: center;
+      }
+      .card {
+        aspect-ratio: 4/3;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+      .card::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        left: var(--x, -1000px);
+        top: var(--y, -1000px);
+        /* background-color: rgba(255, 192, 203, 0.576); */
+        background: radial-gradient(circle closest-side, rgba(255, 255, 255, 0.6) 0, transparent);
+        border-radius: inherit;
+        transform: translate(-50%, -50%);
+      }
+
+      .inner {
+        position: absolute;
+        background: #222;
+        inset: 2px;
+        border-radius: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="inner">组头的属性 fixed 由最外层 el-table-column决定</div>
+      </div>
+      <div class="card">
+        <div class="inner">组头的属性 fixed 由最外层 el-table-column决定</div>
+      </div>
+      <div class="card">
+        <div class="inner">组头的属性 fixed 由最外层 el-table-column决定</div>
+      </div>
+      <div class="card">
+        <div class="inner">组头的属性 fixed 由最外层 el-table-column决定</div>
+      </div>
+      <div class="card">
+        <div class="inner">组头的属性 fixed 由最外层 el-table-column决定</div>
+      </div>
+      <div class="card">
+        <div class="inner">组头的属性 fixed 由最外层 el-table-column决定</div>
+      </div>
+      <div class="card">
+        <div class="inner">组头的属性 fixed 由最外层 el-table-column决定</div>
+      </div>
+      <div class="card">
+        <div class="inner">组头的属性 fixed 由最外层 el-table-column决定</div>
+      </div>
+      <div class="card">
+        <div class="inner">组头的属性 fixed 由最外层 el-table-column决定</div>
+      </div>
+    </div>
+
+    <script>
+      const container = document.querySelectorAll('.container')[0];
+      const cards = document.querySelectorAll('.card');
+      container.onmousemove = function (e) {
+        for (const card of cards) {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--x', `${x}px`);
+          card.style.setProperty('--y', `${y}px`);
+        }
+      };
+    </script>
+  </body>
+</html>

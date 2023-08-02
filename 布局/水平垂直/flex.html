@@ -1,0 +1,85 @@
+<!--
+ * @Author: RONGWEI PENG
+ * @Date: 2021-01-13 10:04:02
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2021-01-13 10:45:56
+ * @FilePath: \css_project\布局\flex.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./flex.css">
+</head>
+
+<body>
+
+
+  <div class="flex__container">
+    <div class="flex__item">:)</div>
+  
+    <input type="checkbox" name="margin" id="marginTop" data-custom-property="margin-top" />
+    <label for="marginTop" class="top"><span class="ui"></span>margin-top: auto</label>
+  
+    <input type="checkbox" name="margin" id="marginRight" data-custom-property="margin-right" />
+    <label for="marginRight" class="right"><span class="ui"></span>margin-right: auto</label>
+  
+    <input type="checkbox" name="margin" id="marginBottom" data-custom-property="margin-bottom" />
+    <label for="marginBottom" class="bottom"><span class="ui"></span>margin-right: auto</label>
+  
+    <input type="checkbox" name="margin" id="marginLeft" data-custom-property="margin-left" />
+    <label for="marginLeft" class="left"><span class="ui"></span>margin-left: auto</label>
+  
+  </div>
+
+  <script>
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const flexItem = document.querySelector(".flex__item");
+
+checkboxes.forEach((checkbox) =>
+  checkbox.addEventListener("change", (e) => {
+    const property = e.target.id;
+    if (e.target.checked) {
+      document.documentElement.style.setProperty(`--${e.target.id}`, `auto`);
+
+      if (e.target.id === "marginTop") {
+        flexItem.style.marginTop = `var(--${e.target.id})`;
+      }
+
+      if (e.target.id === "marginRight") {
+        flexItem.style.marginRight = `var(--${e.target.id})`;
+      }
+
+      if (e.target.id === "marginBottom") {
+        flexItem.style.marginBottom = `var(--${e.target.id})`;
+      }
+
+      if (e.target.id === "marginLeft") {
+        flexItem.style.marginLeft = `var(--${e.target.id})`;
+      }
+    } else {
+      if (e.target.id === "marginTop") {
+        flexItem.style.marginTop = `unset`;
+      }
+
+      if (e.target.id === "marginRight") {
+        flexItem.style.marginRight = `unset`;
+      }
+
+      if (e.target.id === "marginBottom") {
+        flexItem.style.marginBottom = `unset`;
+      }
+
+      if (e.target.id === "marginLeft") {
+        flexItem.style.marginLeft = `unset`;
+      }
+    }
+  })
+);
+  </script>
+</body>
+
+</html>
