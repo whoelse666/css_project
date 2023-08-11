@@ -1,0 +1,286 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#box1 {
+  .mode {
+    position: relative;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .text {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    bottom: 20px;
+    right: 20px;
+    background: rgb(108, 124, 15);
+    font: bolder 100px 'Alfa Slab One';
+    color: #fff;
+    text-align: center;
+    padding-top: 10px;
+    mix-blend-mode: overlay;
+    /* 
+       
+       mix-blend-mode: normal;         // 正常
+  mix-blend-mode: multiply;       // 正片叠底
+  mix-blend-mode: screen;         // 滤色
+  mix-blend-mode: overlay;        // 叠加
+  mix-blend-mode: darken;         // 变暗
+  mix-blend-mode: lighten;        // 变亮
+  mix-blend-mode: color-dodge;    // 颜色减淡
+  mix-blend-mode: color-burn;     // 颜色加深
+  mix-blend-mode: hard-light;     // 强光
+  mix-blend-mode: soft-light;     // 柔光
+  mix-blend-mode: difference;     // 差值
+  mix-blend-mode: exclusion;      // 排除
+  mix-blend-mode: hue;            // 色相
+  mix-blend-mode: saturation;     // 饱和度
+  mix-blend-mode: color;          // 颜色
+  mix-blend-mode: luminosity;     // 亮度*/
+  }
+}
+
+#box2 {
+  .out {
+    width: 800px;
+    height: 400px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .warpper {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
+
+  .text-wrapper {
+    font-size: 72px;
+    height: 86px;
+    line-height: 86px;
+    margin-left: -222px;
+    margin-top: -43px;
+    width: 444px;
+    left: 50%;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    color: #000;
+  }
+
+  .bg-wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    animation: run 2s infinite alternate-reverse;
+  }
+
+  .bg-wrapper .text-wrapper {
+    color: aquamarine;
+  }
+
+  .bg-wrapper img {
+    width: 100%;
+    animation: img-run 2s infinite alternate-reverse;
+  }
+
+  @keyframes run {
+    0% {
+      clip-path: inset(47.5px 150px);
+    }
+
+    100% {
+      clip-path: inset(147.5px 350px);
+    }
+  }
+
+  @keyframes img-run {
+    0% {
+      transform: scale(1.2) translateY(0) translateZ(0px);
+    }
+
+    100% {
+      transform: scale(0.8) translateY(40px) translateZ(0px);
+    }
+  }
+}
+
+#box3 {
+  .main {
+    width: 600px;
+    height: 200px;
+    background: linear-gradient(45deg, #000 0, #000 50%, #fff 50%);
+    position: relative;
+    margin: 100px auto;
+  }
+
+  .main::before {
+    content: '白雾茫茫丶';
+    position: absolute;
+    font-size: 50px;
+    width: 100%;
+    height: 100%;
+    top: 40%;
+    left: 20%;
+    color: #fff;
+    mix-blend-mode: difference;
+    animation: move 3s infinite linear alternate;
+  }
+
+  @keyframes move {
+    0% {
+      transform: translateX(20%);
+    }
+
+    100% {
+      transform: translateX(-20%);
+    }
+  }
+}
+
+#box4 {
+  .inverted-1 {
+    background:
+      linear-gradient(black 50%, #fff 0) 0 var(--_d, 0) /100% 200% no-repeat,
+      linear-gradient(#0000 50%, #000 0) 0 var(--_d, 0) /100% 200% no-repeat;
+    -webkit-background-clip: text, padding-box;
+    background-clip: text, padding-box;
+    transition: 0.8s
+  }
+
+  .inverted-1:hover {
+    --_d: 50%;
+  }
+
+  .inverted-2 {
+    background:
+      linear-gradient(90deg, #000 50%, #fff 0),
+      linear-gradient(-90deg, #000 50%, #fff 0),
+      linear-gradient(90deg, #0000 50%, #000 0),
+      linear-gradient(-90deg, #0000 50%, #000 0);
+    background-repeat: no-repeat;
+    background-size: 200% 51%;
+    background-position: top left, bottom right;
+    -webkit-background-clip: text, text, padding-box, padding-box;
+    background-clip: text, text, padding-box, padding-box;
+    transition: 0.8s
+  }
+
+  .inverted-2:hover {
+    background-position: top right, bottom left;
+  }
+
+  .inverted-3 {
+    background:
+      linear-gradient(-135deg, #000 50%, #fff 0) var(--_d, 100%)/250% no-repeat,
+      linear-gradient(-135deg, #0000 50%, #000 0) var(--_d, 100%)/250% no-repeat;
+    -webkit-background-clip: text, padding-box;
+    background-clip: text, padding-box;
+    transition: 0.8s
+  }
+
+  .inverted-3:hover {
+    --_d: 50%;
+  }
+
+  .inverted-4 {
+    background:
+      linear-gradient(to bottom right, #000 50%, #fff 50.1%) left/300% 300% no-repeat,
+      linear-gradient(to bottom right, #0000 50%, #000 50.1%) left/300% 300% no-repeat;
+    -webkit-background-clip: text, padding-box;
+    background-clip: text, padding-box;
+    transition: 0.8s
+  }
+
+  .inverted-4:hover {
+    background-position: center;
+  }
+
+  .inverted-5 {
+    background:
+      linear-gradient(#000, 40%, #fff 0 60%, #000 0) left/var(--_p, 0%) no-repeat,
+      linear-gradient(#0000 40%, #000 0 60%, #0000 0) left/var(--_p, 0%) no-repeat,
+      #000;
+    -webkit-background-clip: text, padding-box, text;
+    background-clip: text, padding-box, text;
+    transition: 0.8s
+  }
+
+  .inverted-5:hover {
+    --_p: 100%;
+  }
+
+  .inverted-6 {
+    --_g1: conic-gradient(from 90deg at 50% 75%, #000 90deg, #fff 0) no-repeat;
+    --_g2: conic-gradient(from 90deg at 50% 75%, #0000 90deg, #000 0) no-repeat;
+    background:
+      var(--_g1) 0 calc(134% - var(--_p, 0%)),
+      var(--_g2) 0 calc(134% - var(--_p, 0%)),
+      var(--_g1) 100% calc(200% - var(--_p, 0%)),
+      var(--_g2) 100% calc(200% - var(--_p, 0%)),
+      #000;
+    background-size: 50.2% 400%;
+    -webkit-background-clip: text, padding-box;
+    background-clip: text, padding-box;
+    transition: 0.8s
+  }
+
+  .inverted-6:hover {
+    --_p: 134%;
+  }
+
+  .inverted-7 {
+    background:
+      linear-gradient(-45deg, #000 40%, #fff 0 60%, #000 0) right/300% 100% no-repeat,
+      linear-gradient(-45deg, #0000 40%, #000 0 60%, #0000 0) right/300% 100% no-repeat;
+    -webkit-background-clip: text, padding-box;
+    background-clip: text, padding-box;
+    transition: 0.8s
+  }
+
+  .inverted-7:hover {
+    background-position: left;
+  }
+
+  .inverted-8 {
+    background:
+      linear-gradient(-45deg, #000 40%, #fff 0 60%, #000 0) right/300% 100% no-repeat,
+      linear-gradient(-45deg, #0000 40%, #000 0 60%, #0000 0) right/300% 100% no-repeat;
+    -webkit-background-clip: text, padding-box;
+    background-clip: text, padding-box;
+  }
+
+  .inverted-8:hover {
+    background-position: left;
+    transition: 0.8s
+  }
+
+
+  /**/
+  div[class] {
+    color: #0000;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 40px;
+    font-family: sans-serif;
+    margin: 25px;
+    padding: 8px;
+    cursor: pointer;
+  }
+
+  body {
+    text-align: center;
+  }
+}
