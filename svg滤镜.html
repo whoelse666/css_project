@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG</title>
+    <style>
+      .btn {
+        background-color: pink;
+        width: 300px;
+        height: 100px;
+        border-radius: 10px;
+        font-size: 30px;
+        text-align: center;
+        line-height: 100px;
+        margin: 100px auto;
+        cursor: pointer;
+        filter: url(#noise);
+      }
+    </style>
+  </head>
+  <body>
+    <svg style="display: none">
+      <defs>
+        <filter id="noise" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0 0.4" numOctaves="2" seed="2" stitchTiles="stitch" x="0%" y="0%" width="100%" height="100%" result="turbulence" />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="turbulence"
+            scale="30"
+            xChannelSelector="R"
+            yChannelSelector="B"
+            x="0%"
+            y="0%"
+            width="100%"
+            height="100%"
+            result="displacementMap"
+          />
+        </filter>
+      </defs>
+    </svg>
+    <div class="btn">feTurbulence</div>
+   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+
+    <script>
+      const tur = document.querySelector('feTurbulence');
+      const btn = document.querySelector('.btn');
+      const tl = new gsap.timeline({
+        // paused: true,
+        onUpdate() {
+          tur.setAttribute('baseFrequency', `0 ${val.freq}`);
+        }
+      });
+
+      const val = { freq: 0.00001 };
+      tl.to(val, { freq: 0.4, duration: 0.1 });
+      tl.to(val, { freq: 0.00001, duration: 0.1 });
+      btn.onmouseenter = () => tl.restart();
+       btn.onmouseleave = () => tl.restart();
+      //  btn.onmouseleave = () => tl.pause();
+    </script>
+  </body>
+</html>

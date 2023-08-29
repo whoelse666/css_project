@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flex</title>
+
+    <style>
+      .container {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        background-color: aliceblue;
+      }
+      .item {
+        text-align: center;
+        width: 300px;
+        line-height: 100px;
+        height: 100px;
+        align-self: baseline;
+        border: 1px solid fuchsia;
+        background-color: gainsboro;
+        /* flex-grow: 1; */
+        flex-shrink: 1;
+        flex-basis: 15%;
+      }
+
+      .item:nth-child(1) {
+        background-color: pink;
+        width: 300px;
+        /*  align-self: auto | flex-start | flex-end | center | baseline | stretch; */
+        align-self: center;
+      }
+      .item:nth-child(2) {
+        height: 200px;
+        line-height: 200px;
+        order: -1;
+        flex-basis: 25%;
+        /* auto; */
+        background-color: rgb(149, 15, 38);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+      <div class="item">7</div>
+    </div>
+    <script></script>
+  </body>
+</html>
