@@ -1,0 +1,45 @@
+<!--
+ * @Author: RONGWEI PENG
+ * @Date: 2022-10-21 17:06:24
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2022-11-02 16:09:57
+ * @FilePath: \css_demo\dtbg.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文字动态背景</title>
+  <style >
+.test{
+  width: 800px;
+  height: 200px;
+  font-size: 100px;
+  font-weight: 800;
+  /* background: url('./assets/imgs/sjb.jpeg') no-repeat; */
+  background: url('https://media.giphy.com/media/Ju7l5y9osyymQ/giphy.gif') no-repeat;
+  background-size: 100% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  /* background-color:transparent; */
+  animation: dynamic 5s infinite alternate linear;
+}
+@keyframes dynamic {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
+  
+}
+
+  </style>
+</head>
+<body>
+  <div class="test">beijing</div>
+</body>
+</html>
