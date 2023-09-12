@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>如何用一行 CSS 实现 10 种现代布局</title>
+    <style>
+      body {
+        margin: 0;
+        background-color: aliceblue;
+      }
+
+      .demo {
+        background-color: pink;
+        box-sizing: border-box;
+        height: 100vh;
+        resize: both;
+        overflow: auto;
+      }
+      .child {
+        margin: 5px;
+        background-color: blue;
+      }
+      .demo1 {
+        display: grid;
+        place-items: center;
+      }
+      .demo2 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .demo2 .child {
+        flex: 1 1 150px;
+      }
+      .demo3 {
+        display: grid;
+        grid-template-columns: minmax(300px, 25%) 1fr;
+      }
+      .demo4 {
+        display: grid;
+        /* grid-template-rows: auto 1fr auto; */
+        grid-template-rows: auto 1fr auto;
+      }
+
+      .demo5 {
+        display: grid;
+        grid-template: auto 1fr auto / auto 1fr auto;
+      }
+      .demo5 .header,
+      .demo5 .footer,
+      .demo5 .main {
+        grid-column: 1/ 4;
+      }
+      .demo5 .left-side {
+        grid-column: 1/ 2;
+      }
+
+      .demo5 .main {
+        margin: 5px;
+        background-color: rgb(218, 123, 182);
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+      }
+      .demo6 {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+      }
+      .demo6 .child {
+        background-color: rgb(123, 204, 218);
+      }
+      .demo6 .span1 {
+        grid-column: 1 / 13;
+      }
+      .demo6 .span2 {
+        grid-column: 5/ 7;
+      }
+      .demo6 .span3 {
+        grid-column: 2 / 8;
+      }
+      .demo6 .span4 {
+        grid-column: 1 / 5;
+      }
+
+      .demo7 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        /* grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); */
+      }
+      .demo8 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .demo9 {
+        display: grid;
+        place-items: center;
+        width: clamp(23ch, 60%, 46ch);
+      }
+      .demo9 .child {
+        display: flex;
+        flex-direction: column;
+        width: clamp(23ch, 60%, 46ch);
+        height: 50px;
+      }
+
+      .demo10 {
+        display: grid;
+        place-items: center;
+      }
+      .demo10 .child {
+        width: 30%;
+        background-color: crimson;
+        aspect-ratio: 16 / 9;
+      }
+      .demo10 .span2 {
+        aspect-ratio: 1 / 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="demo demo1">demo1</div> -->
+    <!-- <div class="demo demo2">
+      <div class="child">demo2 child</div>
+      <div class="child">demo2 child</div>
+      <div class="child">demo2 child</div>
+    </div> -->
+    <!-- <div class="demo demo3">
+      <div class="child">demo3 head</div>
+      <div>
+        <div class="child">demo3 content</div>
+        <div class="child">demo3 footer</div>
+      </div>
+    </div> -->
+    <!-- <div class="demo demo4">
+      <div class="child">demo4 head</div>
+      <div class="child">demo4 content</div>
+      <div class="child">demo4 footer</div>
+    </div> -->
+    <!-- <div class="demo demo5">
+      <div class="child header">demo5 header</div>
+      <div class="child main">
+        <div class="left-side child">left content</div>
+        <div class="child">main content</div>
+        <div class="child">right content</div>
+      </div>
+      <div class="child footer">demo5 footer</div>
+    </div> -->
+    <!-- <div class="demo demo6">
+      <div class="child span1">demo6 span1</div>
+      <div class="child span2">demo6 span2</div>
+      <div class="child span3">demo6 span3</div>
+      <div class="child span4">demo6 span4</div>
+    </div> -->
+    <!-- <div class="demo demo7">
+      <div class="child span1">demo7 span1</div>
+      <div class="child span2">demo7 span2</div>
+      <div class="child span3">demo7 span3</div>
+      <div class="child span4">demo7 span4</div>
+    </div> -->
+    <!-- <div class="demo demo8">
+      <div class="child span1">demo8 span1</div>
+      <div class="child span2">demo8 span2</div>
+      <div class="child span3">demo8 span3</div>
+      <div class="child span4">demo8 span4</div>
+    </div> -->
+    <!-- <div class="demo demo9">
+      <div class="child span1">demo9 span1</div>
+      <div class="child span2">demo9 span2</div>
+      <div class="child span3">demo9 span3</div>
+      <div class="child span4">demo9 span4</div>
+    </div> -->
+    <div class="demo demo10">
+      <div class="child span1">demo10 span1</div>
+      <div class="child span2">demo10 span2</div>
+      <div class="child span3">demo10 span3</div>
+      <div class="child span4">demo10 span4</div>
+    </div>
+  </body>
+</html>
