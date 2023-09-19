@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>实现防篡改的水印</title>
+
+    <style>
+      #water {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100vh;
+        border: 1px solid pink;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="parent">
+      <!-- <div id="water"></div> -->
+    </div>
+    <script>
+          const parentNode = document.getElementById("parent");
+          // const waterNode = document.getElementById("water");
+          const { base64,
+            size } = useWatermarkBg({
+              fontSize: 32,
+              text: '防篡改的水印',
+              gap: 20,
+              color: 'pink',
+            })
+
+
+          // waterNode.style.backgroundImage = `url(${base64})`;
+          let div = null
+          const ob = new MutationObserver(entries => {
+            console.log('entries', entries);
+            for (const entry of entries) {
+              // 11副除
+              for (const dom of entry.removedNodes) {
+                if (dom == div) {
+                  console.log('水印被删除除')
+                  resetWatermark();
+                  return;
+                }
+              }
+              // 11修改
+              if (entry.target == div) {
+                console.log('水印被修改')
+                resetWatermark();
+                return;
+              }
+            }
+          })
+      resetWatermark()
+          ob.observe(parentNode,
+            {
+              childList: true,
+              subtree: true,
+              attributes: true,
+            });
+
+          function resetWatermark() {
+            if (!parentNode) {
+              return;
+            }
+            if (div) { div.remove()  }
+
+            div = document.createElement('div');
+            div.style.position = 'absolute';
+            div.style.position = 'absolute'
+            div.style.backgroundImage = `url(${base64})`
+            div.style.backgroundSize = `${size}px ${size}px`;
+            div.style.backgroundRepeat = 'repeat';
+            div.style.zIndex = 9999;
+            div.style.inset = 0;
+            parentNode.appendChild(div);
+          }
+
+          function useWatermarkBg(props) {
+            // return computed(() => {
+            const canvas = document.createElement("canvas")
+            const devicePixelRatio = window.devicePixelRatio || 1;
+            const fontSize = props.fontSize * devicePixelRatio
+            const font = fontSize + "px serif"
+            const ctx = canvas.getContext("2d")
+            //  获取文字宽度
+            ctx.font = font
+            const { width } = ctx.measureText(props.text);
+            const canvasSize = Math.max(100, width) + props.gap * devicePixelRatio;
+            canvas.width = canvasSize
+            canvas.height = canvasSize
+            ctx.translate(canvas.width / 2, canvas.height / 2)
+            ctx.rotate((Math.PI / 180) * -45)
+            ctx.fillStyle =props.color;
+            ctx.font = font
+            ctx.textAlign = "center"
+            ctx.textBaseline = "middle"
+            ctx.fillText(props.text, 0, 0)
+            return {
+              base64: canvas.toDataURL(),
+              size: canvasSize / devicePixelRatio,
+            }
+            // })
+          }
+    </script>
+  </body>
+</html>
