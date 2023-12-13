@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS3 渐变</title>
+    <style>
+        div:nth-child(1) {
+            width: 400px;
+            height: 200px;
+            margin: 40px auto;
+            /* 以四个角，相切，画圆，当半径为正方形的边长一半时，是圆 */
+            border-radius: 100px;
+            background-color: yellowgreen;
+        }
+        div:nth-child(2) {
+            width: 300px;
+            height: 200px;
+            margin: 40px auto;
+            border-radius: 100px;
+            background-color: yellowgreen;
+            background-image: radial-gradient(
+                    200px at 100px 100px,
+                    rgba(0, 0, 0, 0),
+                    rgba(0, 0, 0, 0.5)
+            );
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+             div {
+                 width: 250px;
+                 height: 250px;
+                 border: 1px solid #000;
+                 margin: 20px;
+                 float: left;
+             }
+             /*
+                 径向渐变：
+                 radial-gradient（辐射的半径大小(可不写), 中心的位置，起始颜色，终止颜色）;
+      /* 径向渐变标准写法加at，可不考虑兼容，并且前面可以加辐射半径 */
+                 中心点的位置可以是：at left right center bottom top。如果以像素为单位，则中心点参照的是盒子的左上角。
+             */
+             /*辐射半径为100px，中心点在中间*/
+             div:nth-child(1) {
+                 background-image: radial-gradient(100px at top, yellow, green);
+             }
+             /*中心点在左上角*/
+             div:nth-child(2) {
+                 background-image: radial-gradient(at left top, yellow, green);
+             }
+             div:nth-child(3) {
+                 background-image: radial-gradient(at 150px 50px, yellow, green);
+             }
+             /*设置不同的颜色渐变*/
+             div:nth-child(4) {
+                 background-image: radial-gradient(150px at center,
+                 yellow 0%,
+                 green 30%,
+                 blue 60%,
+                 red 100%);
+             }
+             /*设置不同的颜色突变*/
+             div:nth-child(5) {
+                 background-image: radial-gradient(100px at center,
+                 yellow 0%,
+                 yellow 30%,
+                 green 30%,
+                 green 60%,
+                 blue 60%,
+                 blue 100%);
+             }
+             /*如果辐射半径的宽高不同,写2个半径像素值，那就是椭圆*/
+             div:nth-child(6) {
+                 background-image: radial-gradient(100px 50px at center, yellow, green);
+             }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </body>
+</html> -->
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pic {
+ width: 1400px;
+ height: 800px;
+            /* background-image: url(./dongman.jpg),linear-gradient(to right,#f00, #00f); */
+ background-image: url(https://pic3.zhimg.com/80/v2-143ca033daa11a4b50ba3d420bae497e_1440w.webp),
+ linear-gradient(to right,red 0%, red 20%,blue 20%, rgb(255, 238, 0) 50%,green 50%,green 80%,purple 80%,purple 100%);
+            /* background-image: url(./dongman.jpg),url(./flower.jpg); */
+ background-size: cover, 100% 100%;
+            /* 设置第一幅为0,0起始位置，第二幅渐变色背景隐藏，可以左侧右侧，上侧下侧，也可对角设置隐藏 */
+ background-position: 0 0, 800px 800px;
+ background-blend-mode: luminosity;
+ background-repeat: no-repeat;
+            /* transition: .5s background-position linear; */
+            /* transition: .5s background-position ; */
+            /* transition: 6s linear ; */
+        }
+        .pic:hover {
+ background-position: 0 0, 0 0;
+ transition: 5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="pic"></div>
+</body>
+</html> -->

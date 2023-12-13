@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../reset.css" />
+    <style>
+             body{
+      background-color: burlywood;
+             }
+             #Box{
+      width: 100%;
+      height: 577px;
+      background-color: gray;
+      margin: 200PX auto;
+             }
+             div[class^="box"]{
+      width: 344px;
+      height: 476px;
+                 /* 使4个盒子的边框为15px */
+      border: 15px dashed rgb(236, 20, 20);
+                 /* 使4个盒子显示在一行 */
+      float: left;
+                 /* 设置每个盒子外边距10px */
+      margin: 10px;
+                 /* 设置每个盒子内边距10px */
+      padding: 20px;
+                 /* 每个盒子都设置背景，不平铺 */
+      background-image:url(.images/1.jpg),url(./images/2.jpg);
+      background-repeat:no-repeat,no-repeat;
+      background-color: rgb(28, 68, 154);
+
+             }
+             .box2{
+      background-blend-mode:lighten;
+      background-size: cover;
+             }
+             .box3{
+      background-blend-mode:multiply;
+      background-size: cover;
+             }
+             .box4{
+      background-blend-mode:exclusion;
+      background-size: cover;
+             }
+    </style>
+  </head>
+  <body>
+    <div id="Box">
+      <div class="box1"></div>
+      <div class="box2"></div>
+      <div class="box3"></div>
+      <div class="box4"></div>
+    </div>
+  </body>
+</html>
+<!-- 
+mix-blend-mode
+{
+   mix-blend-mode: normal;         // 正常
+   mix-blend-mode: multiply;       // 正片叠底
+   mix-blend-mode: screen;         // 滤色
+   mix-blend-mode: overlay;        // 叠加
+   mix-blend-mode: darken;         // 变暗
+   mix-blend-mode: lighten;        // 变亮
+   mix-blend-mode: color-dodge;    // 颜色减淡
+   mix-blend-mode: color-burn;     // 颜色加深
+   mix-blend-mode: hard-light;     // 强光
+   mix-blend-mode: soft-light;     // 柔光
+   mix-blend-mode: difference;     // 差值
+   mix-blend-mode: exclusion;      // 排除
+   mix-blend-mode: hue;            // 色相
+   mix-blend-mode: saturation;     // 饱和度
+   mix-blend-mode: color;          // 颜色
+   mix-blend-mode: luminosity;     // 亮度
+   mix-blend-mode: initial;
+   mix-blend-mode: inherit;
+   mix-blend-mode: unset;
+}
+
+ -->

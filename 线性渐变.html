@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 500px;
+            height: 100px;
+            margin: 10px auto;
+            border: 1px solid #000;
+        }
+        /* 语法：
+            linear-gradient(方向，起始颜色，颜色...，终止颜色);
+            方向：to left   to right  to top   to bottom或者角度30deg顺时针
+            渐变1:起始颜色，终止颜色：yellow, green  
+            渐变2：颜色+开始位置：
+            yellow 0%,
+            red 40%,
+            green 70%,
+            blue 100%
+            突变：颜色1+开始位置，颜色1+结束位置，颜色2+开始位置，颜色2+结束位置，....:
+            yellow 0%,
+            yellow 25%,
+            blue 25%,
+            blue 50%,
+            red 50%,
+            red 75%,
+            green 75%,
+            green 100%
+        */
+        div:nth-child(1) {
+            background-image: linear-gradient(to right, yellow,white, green);
+        }
+        /* 不写方向，表示默认的方向是：从上往下 */
+        div:nth-child(2) {
+            background-image: linear-gradient(yellow,purple, green);
+        }
+        /* 方向可以指定角度 */
+        div:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            background-image: linear-gradient(135deg, yellow, green);
+        }
+        /* 0%的位置开始出现黄色，40%的位置开始出现红色的过度。70%的位置开始出现绿色的过度，100%的位置开始出现蓝色 */
+        div:nth-child(4) {
+            background-image: linear-gradient(to right,
+            yellow 0%,
+            red 40%,
+            green 70%,
+            blue 100%);
+        }
+        /* 颜色之间，出现突变 */
+        div:nth-child(5) {
+            background-image: linear-gradient(45deg,
+            yellow 0%,
+            yellow 25%,
+            blue 25%,
+            blue 50%,
+            red 50%,
+            red 75%,
+            green 75%,
+            green 100%
+            );
+        }
+        div:nth-child(6) {
+            background-image: linear-gradient(to right,
+            #000 0%,
+            #000 25%,
+            #fff 25%,
+            #fff 50%,
+            #000 50%,
+            #000 75%,
+            #fff 75%,
+            #fff 100%
+            );
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>
