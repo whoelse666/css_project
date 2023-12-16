@@ -1,0 +1,70 @@
+两行CSS让长列表性能渲染提升 
+前端大学 2023-12-16 09:32 发表于江苏
+今天咱们来看两个可以 直接提升渲染性能的 CSS 属性。
+content-visibility
+contain-intrinsic-size
+这两个 CSS 属性，主要针对 长列表渲染。有长列表渲染需求的同学，可一定不能错过咯~
+
+
+
+content-visibility
+content-visibility是CSS新增的属性，主要用来提高页面渲染性能，它可以控制一个元素是否渲染其内容，并且允许浏览器跳过这些元素的布局与渲染。
+
+visible：默认值，没有效果。元素的内容被正常布局和呈现。
+hidden：元素跳过它的内容。跳过的内容不能被用户代理功能访问，例如在页面中查找、标签顺序导航等，也不能被选择或聚焦。这类似于给内容设置display: none。
+auto：该元素打开布局包含、样式包含和绘制包含。如果该元素与用户不相关，它也会跳过其内容。与 hidden 不同，跳过的内容必须仍可正常用于用户代理功能，例如在页面中查找、tab 顺序导航等，并且必须正常可聚焦和可选择。
+content-visibility: hidden手动管理可见性
+上面说到content-visibility: hidden的效果与display: none类似，但其实两者还是有比较大的区别的：
+
+content-visibility: hidden 只是隐藏了子元素，自身不会被隐藏
+content-visibility: hidden 隐藏内容的渲染状态会被缓存，所以当它被移除或者设为可见时，浏览器不会重新渲染，而是会应用缓存，所以对于需要频繁切换显示隐藏的元素，这个属性能够极大地提高渲染性能。
+content-visibility: auto 跳过渲染工作
+我们仔细想想，页面上虽然会有很多元素，但是它们会同时呈现在用户眼前吗？很显然是不会的。
+
+用户每次能够真实看到就只有设备可见区那些内容，对于非可见区的内容只要页面不发生滚动，用户就永远看不到。虽然用户看不到，但浏览器却会实实在在的去渲染，以至于浪费大量的性能。所以我们得想办法让浏览器不渲染非可视区的内容就能够达到提高页面渲染性能的效果。
+
+此时就可以直接使用 content-visibility: auto 它可以用来跳过屏幕外的内容渲染，对于这种有大量离屏内容的长列表，可以大大减少页面渲染时间。
+
+首先是没有添加content-visibility: auto的效果，无论这些元素是否在可视区，都会被渲染
+
+图片
+然后，我们为每一个列表项加上 content-visibility: auto:
+
+.card_item {
+  content-visibility: auto;
+}
+图片
+从第10个开始，这些没在可视区的元素就没有被渲染，这可比上面那种全部元素都渲染好太多了。
+
+但是如果浏览器不渲染页面内的一些元素，滚动将是一场噩梦，因为无法正确计算页面高度。这是因为，content-visibility会将分配给它的元素的高度（height）视为0，浏览器在渲染之前会将这个元素的高度变为0，从而使我们的页面高度和滚动变得混乱。
+
+
+
+contain-intrinsic-size 救场
+页面在滚动过程中滚动条一直抖动，这是一个不能接受的体验问题，为了更好地实现content-visibility，浏览器需要应用 size containment 以确保内容的渲染结果不会以任何方式影响元素的大小。这意味着该元素将像空的一样布局。如果元素没有在常规块布局中指定的高度，那么它将是 0 高度。
+
+这个时候我们可以使用contain-intrinsic-size来指定的元素自然大小，确保我们未渲染子元素的 div 仍然占据空间，同时也保留延迟渲染的好处。
+
+我们只需要给添加了content-visibility: auto的元素添加上contain-intrinsic-size就能够解决滚动条抖动的问题，当然，这个高度约接近真实渲染的高度，效果会越好，如果实在无法知道准确的高度，我们也可以给一个大概的值，也会使滚动条的问题相对减少。
+
+.card_item {
+  content-visibility: auto;
+  contain-intrinsic-size: 200px;
+}
+
+
+图片
+
+
+
+
+性能对比
+上面说了这么多，content-visibility是否真的能够提高页面的渲染性能呢，我们来实际对比看看：
+
+首先是没有content-visibility的页面渲染
+图片
+然后是有content-visibility的页面渲染
+图片
+上面是用1000个列表元素进行测试的，有content-visibility的页面渲染花费时间大概是37ms，而没有content-visibility的页面渲染花费时间大概是269ms，提升了足足有7倍之多！！！
+
+对于列表元素更多的页面，content-visibility带来的渲染性能提升会更加明显。
