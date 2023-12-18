@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas1</title>
+  <style>
+    * {
+            margin: 0;
+            padding: 0;
+        }
+        .text {
+            position: absolute;
+            left: 130px;
+            top: 35px;
+            z-index: -1;
+        }
+
+
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="600%" height="600"></canvas>
+<div class="text">恭喜您获得100w</div>
+<script>
+/*  const cnv = document.getElementById('canvas')
+  const cxt = cnv.getContext('2d') */
+
+ 
+/*    // 第一条线
+  cxt.moveTo(20, 100)
+  cxt.lineTo(200, 100)
+  cxt.lineWidth = 10
+  cxt.strokeStyle = 'pink'
+  cxt.lineCap = 'round' // 默认: butt; 圆形: round; 方形: square
+  cxt.stroke()
+
+  // 第二条线
+    cxt.beginPath() // 重新开启一个路径
+  cxt.moveTo(20, 120.5)
+  cxt.lineTo(200, 120.5);
+    cxt.lineWidth = 4
+  cxt.strokeStyle = 'red'
+  cxt.stroke() */
+  
+  // strokeRect(x, y, width, height) 方法
+  //  cxt.strokeStyle = 'pink'
+  // cxt.strokeRect(50, 50, 200, 100);
+
+/*   cxt.strokeStyle = 'red'
+  cxt.strokeRect(50, 50, 200, 100)
+  cxt.fillStyle = 'yellow'
+  cxt.fillRect(50, 50, 200, 100)  */
+/* cxt.rect(50, 50, 200, 100) // rect(x, y, width, height)
+cxt.strokeStyle = 'red'
+  cxt.fillStyle = 'pink'
+  cxt.stroke()
+  cxt.fill(); */
+  /*   cxt.fillStyle = 'pink' // 设置填充颜色
+  cxt.fillRect(50, 50, 200, 200) // 填充矩形
+
+  cxt.clearRect(60, 60, 180, 90) // 清空矩形 */
+
+
+  /* todo 1 实现时钟转动  */
+  /* const canvas = document.getElementById('canvas')
+const ctx = canvas.getContext('2d')
+
+ctx.translate(300, 300) // 设置中心点，此时300，300变成了坐标的0，0
+// 把状态保存起来
++ ctx.save()
+
+// 画大圆
+ctx.beginPath()
+// 画圆线使用arc(中心点X,中心点Y,半径,起始角度,结束角度)
+ctx.arc(0, 0, 100, 0, 2 * Math.PI)
+ctx.stroke() // 执行画线段的操作
+ctx.closePath()
+
+// 画小圆
+ctx.beginPath()
+ctx.arc(0, 0, 5, 0, 2 * Math.PI)
+ctx.stroke()
+ctx.closePath()
+
+
+// 获取当前 时，分，秒
+let time = new Date()
+let hour = time.getHours() % 12
+let min = time.getMinutes()
+let sec = time.getSeconds()
+
+// 时针
+ctx.rotate(2 * Math.PI / 12 * hour + 2 * Math.PI / 12 * (min / 60) - Math.PI / 2)
+ctx.beginPath()
+// moveTo设置画线起点
+ctx.moveTo(-10, 0)
+// lineTo设置画线经过点
+ctx.lineTo(40, 0)
+// 设置线宽
+ctx.lineWidth = 10
+ctx.stroke()
+ctx.closePath()
+// 恢复成上一次save的状态
+ctx.restore()
+// 恢复完再保存一次
+ctx.save()
+
+// 分针
+ctx.rotate(2 * Math.PI / 60 * min + 2 * Math.PI / 60 * (sec / 60) - Math.PI / 2)
+ctx.beginPath()
+ctx.moveTo(-10, 0)
+ctx.lineTo(60, 0)
+ctx.lineWidth = 5
+ctx.strokeStyle = 'blue'
+ctx.stroke()
+ctx.closePath()
+ctx.restore()
+ctx.save()
+
+//秒针
+ctx.rotate(2 * Math.PI / 60 * sec -  - Math.PI / 2)
+ctx.beginPath()
+ctx.moveTo(-10, 0)
+ctx.lineTo(80, 0)
+ctx.strokeStyle = 'red'
+ctx.stroke()
+ctx.closePath()
+ctx.restore()
+ctx.save()
+
+// 绘制刻度，也是跟绘制时分秒针一样，只不过刻度是死的
+ctx.lineWidth = 1
+for (let i = 0; i < 60; i++) {
+    ctx.rotate(2 * Math.PI / 60)
+    ctx.beginPath()
+    ctx.moveTo(90, 0)
+    ctx.lineTo(100, 0)
+    // ctx.strokeStyle = 'red'
+    ctx.stroke()
+    ctx.closePath()
+}
+ctx.restore()
+ctx.save()
+ctx.lineWidth = 5
+for (let i = 0; i < 12; i++) {
+    ctx.rotate(2 * Math.PI / 12)
+    ctx.beginPath()
+    ctx.moveTo(85, 0)
+    ctx.lineTo(100, 0)
+    ctx.stroke()
+    ctx.closePath()
+}
+
+ctx.restore() */
+
+
+/* todo 2  实现刮刮卡 */
+const canvas = document.getElementById('canvas')
+const ctx = canvas.getContext('2d')
+// 填充的颜色
+ctx.fillStyle = 'darkgray'
+// 填充矩形 fillRect(起始X,起始Y,终点X,终点Y)
+ctx.fillRect(0, 0, 400, 100)
+ctx.fillStyle = '#fff'
+// 绘制填充文字
+ctx.fillText('刮刮卡', 180, 50)
+
+let isDraw = false
+canvas.onmousedown = function () {
+    isDraw = true
+}
+canvas.onmousemove = function (e) {
+    if (!isDraw) return
+    // 计算鼠标在canvas里的位置
+    const x = e.pageX - canvas.offsetLeft
+    const y = e.pageY - canvas.offsetTop
+    // 设置globalCompositeOperation
+    ctx.globalCompositeOperation = 'destination-out'
+    // 画圆
+    ctx.arc(x, y, 10, 0, 2 * Math.PI)
+    // 填充圆形
+    ctx.fill()
+}
+canvas.onmouseup = function () {
+    isDraw = false
+}
+</script>
+</body>
+</html>
