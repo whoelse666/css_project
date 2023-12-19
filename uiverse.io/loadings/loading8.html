@@ -5,73 +5,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
  <style>
-.spinner {
- width: 44px;
- height: 44px;
- animation: spinner-y0fdc1 2s infinite ease;
- transform-style: preserve-3d;
+  
+  .spinner {
+ --size: 30px;
+ --first-block-clr: #005bba;
+ --second-block-clr: #fed500;
+ --clr: #111;
+ width: 100px;
+ height: 100px;
+ position: relative;
 }
 
-.spinner > div {
- background-color: rgba(0,77,255,0.2);
- height: 100%;
+.spinner::after,.spinner::before {
+ -webkit-box-sizing: border-box;
+         box-sizing: border-box;
  position: absolute;
- width: 100%;
- border: 2px solid #004dff;
+ content: "";
+ width: var(--size);
+ height: var(--size);
+ top: 50%;
+ -webkit-animation: up 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+         animation: up 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+ left: 50%;
+ background: var(--first-block-clr);
 }
 
-.spinner div:nth-of-type(1) {
- transform: translateZ(-22px) rotateY(180deg);
+.spinner::after {
+ background: var(--second-block-clr);
+ top: calc(50% - var(--size));
+ left: calc(50% - var(--size));
+ -webkit-animation: down 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+         animation: down 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
 }
 
-.spinner div:nth-of-type(2) {
- transform: rotateY(-270deg) translateX(50%);
- transform-origin: top right;
-}
+@-webkit-keyframes down {
+ 0%, 100% {
+  -webkit-transform: none;
+          transform: none;
+ }
 
-.spinner div:nth-of-type(3) {
- transform: rotateY(270deg) translateX(-50%);
- transform-origin: center left;
-}
-
-.spinner div:nth-of-type(4) {
- transform: rotateX(90deg) translateY(-50%);
- transform-origin: top center;
-}
-
-.spinner div:nth-of-type(5) {
- transform: rotateX(-90deg) translateY(50%);
- transform-origin: bottom center;
-}
-
-.spinner div:nth-of-type(6) {
- transform: translateZ(22px);
-}
-
-@keyframes spinner-y0fdc1 {
- 0% {
-  transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
+ 25% {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
  }
 
  50% {
-  transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
+  -webkit-transform: translateX(100%) translateY(100%);
+          transform: translateX(100%) translateY(100%);
  }
 
- 100% {
-  transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
+ 75% {
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+ }
+}
+
+@keyframes down {
+ 0%, 100% {
+  -webkit-transform: none;
+          transform: none;
+ }
+
+ 25% {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+ }
+
+ 50% {
+  -webkit-transform: translateX(100%) translateY(100%);
+          transform: translateX(100%) translateY(100%);
+ }
+
+ 75% {
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+ }
+}
+
+@-webkit-keyframes up {
+ 0%, 100% {
+  -webkit-transform: none;
+          transform: none;
+ }
+
+ 25% {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+ }
+
+ 50% {
+  -webkit-transform: translateX(-100%) translateY(-100%);
+          transform: translateX(-100%) translateY(-100%);
+ }
+
+ 75% {
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+ }
+}
+
+@keyframes up {
+ 0%, 100% {
+  -webkit-transform: none;
+          transform: none;
+ }
+
+ 25% {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+ }
+
+ 50% {
+  -webkit-transform: translateX(-100%) translateY(-100%);
+          transform: translateX(-100%) translateY(-100%);
+ }
+
+ 75% {
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
  }
 }
 
  </style>
   </head>
   <body>
-   <div class="spinner">
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-</div>
+ 
+<div class="spinner"></div>
   </body>
 </html>
