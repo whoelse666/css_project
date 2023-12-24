@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    * {
+
+      margin: 0;
+      padding: 0;
+
+    }
+
+    :root {
+      --iwidth: 960px;
+      --iheight: 540px;
+    }
+
+    body {
+      background-color: #7f8c8d;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #img {
+      width: var(--iwidth);
+      height: var(--iheight);
+      box-shadow: 0 0 15px 5px rgba(0, 0, 0, .7);
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #main {
+      display: flex;
+      position: absolute;
+    }
+
+    #main div {
+      width: var(--iwidth);
+      height: var(--iheight);
+      border-radius: 10px;
+      flex-shrink: 0;
+      background-size: cover;
+
+    }
+
+
+
+    #img1 {
+      background: url(./images/1.jpg) no-repeat center center;
+
+    }
+
+    #img2 {
+      background: url(./images/2.jpg) no-repeat center center;
+    }
+
+    #img3 {
+      background: url(./images/meixi.jpeg) no-repeat center center;
+    }
+
+    #img4 {
+      background: url(./images/25d98585b58571a6fb896d2e0c2d241.png) no-repeat center center;
+    }
+
+    #mask {
+      width: var(--iwidth);
+      height: var(--iheight);
+      position: absolute;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    #mask div {
+      width: 25%;
+      height: 100%;
+      z-index: 999;
+      background-color: rgba(0, 0, 0, .3);
+
+    }
+
+    .button {
+      display: inline-block;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background-color: rgba(56, 17, 17, 0.5);
+      box-shadow: 0 0 10px rgba(255, 255, 255, .8);
+      color: ☐rgba(255, 255, 255, .7);
+      font-size: 100px;
+      font-weight: bold;
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      transform: translate(45px, -50%);
+      visibility: hidden;
+
+    }
+
+
+    #l_mask:hover .button,
+    #r_mask:hover .button {
+      visibility: visible;
+    }
+
+    .button:hover {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="img">
+    <div id="main">
+      <div id="img1"></div>
+      <div id="img2"></div>
+      <div id="img3"></div>
+      <div id="img4"></div>
+    </div>
+  </div>
+
+  <div id="mask">
+    <div id="l_mask">
+      <span class="button">&lt;</span>
+    </div>
+    <div id="r_mask">
+      <span class="button">&gt;</span>
+    </div>
+  </div>
+
+  <script>
+
+    let oMain = document.querySelector('#main')
+    let oMask = document.querySelector('#mask');
+    let aImg = document.querySelectorAll('#main div');
+    let aButton = document.querySelectorAll('span');
+    let speed = -5;
+    oMain.innerHTML += oMain.innerHTML;
+    let l = 0
+    let move = () => {
+      if (oMain.offsetLeft < -oMain.offsetWidth / 2) {
+        // 从右往左
+        oMain.style.left = '0px';
+        l = 0
+      }
+      if (oMain.offsetLeft > 0) {
+        // 从左往右
+        l += -oMain.offsetWidth / 2
+        oMain.style.left += l + 'px';
+      }
+      l = l + speed
+      oMain.style.left = l + 'px'
+
+    }
+    let timer = setInterval(move, 50);
+
+    oMask.addEventListener('mouseover', () => { clearInterval(timer); })
+    oMask.addEventListener('mouseout', () => { timer = setInterval(move, 30); })
+
+    aButton[0].onclick = () => { speed = -5; }
+    aButton[1].onclick = () => { speed = 5; }
+
+  </script>
+</body>
+
+</html>
