@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #root {
+      position: relative;
+      z-index: 0;
+      display: flex;
+      -ms-flex-pack: center;
+      justify-content: center;
+      margin: 0 auto;
+      height: 9.375vw;
+      min-width: 1000px;
+      min-height: 155px;
+      max-height: 240px;
+      background-color: #e3e5e7;
+      background-position: center 0;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    #animated-banner {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      overflow: hidden;
+    }
+
+    .layer {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #h {
+      background-color: aqua;
+      height: 1200px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <div id="animated-banner">
+      <!-- <div class="layer" >
+        <img src="./images/1.webp" style="position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;"  alt="">
+      </div>
+    </div> -->
+    </div>
+
+    <div id="h"></div>
+
+
+    <script>
+      const layers = [
+        {
+          resources: [
+            {
+              src: './images/1.webp',
+              id: 0
+            }
+          ],
+          scale: {
+            initial: 0.6,
+          },
+          rotate: {},
+          translate: {
+            initial: [130, 0],
+            offset: [130, 0],
+          },
+          blur: {},
+          opacity: {
+            wrap: 'clamp'  //clamp函数
+          },
+          name: 'img1'
+        },
+        {
+          resources: [
+            {
+              src: './images/4.webp',
+              id: 0
+            }
+          ],
+          scale: {
+            initial: 0.6,
+          },
+          rotate: {},
+          translate: {
+            initial: [-420, -80],
+            offset: [400, 10],
+          },
+          blur: {},
+          opacity: {
+            wrap: 'clamp'  //clamp函数
+          },
+          name: 'img4'
+        },
+        {
+          is: -1,
+          resources: [
+            {
+              src: './images/5.webp',
+              id: 0
+            }
+          ],
+          scale: {
+            initial: 0.6,
+          },
+          rotate: {},
+          translate: {
+            initial: [330, 0],
+            offset: [500, 20],
+          },
+          blur: {},
+          opacity: {
+            wrap: 'clamp'  //clamp函数
+          },
+          name: 'img5'
+        },
+        // {
+        //   resources: [
+        //     {
+        //       src: './images/6.webp',
+        //       id: 0
+        //     }
+        //   ],
+        //   scale: {
+        //     initial: 0.6,
+        //   },
+        //   rotate: {},
+        //   translate: {
+        //     initial: [130, 0],
+        //     offset: [130, 0],
+        //   },
+        //   blur: {},
+        //   opacity: {
+        //     wrap: 'clamp'  //clamp函数
+        //   },
+        //   name: 'img6'
+        // },
+      ];
+
+
+      // 鼠标指针相对窗口边缘水平坐标 左还是右,左进则是正数比率,右进则是负数比率
+      let relativeX = 0;
+      const banner = document.querySelector('#animated-banner');
+      // /初始样式没有设置的设置初始值
+      const initialStyleObj = layers.map(layer => {
+        let layerRotate, layerTranslate, layerBlur, layerOpacity;
+        return {
+          scale: 1,
+          rotate: ((layerRotate = layer.rotate) == null ? void 0 : layerRotate.initial) || 0,
+          translate: ((layerTranslate = layer.translate) == null ? void 0 : layerTranslate.initial) || [0, 0],
+          blur: ((layerBlur = layer.blur) == null ? void 0 : layerBlur.initial) || 0,
+          opacity: ((layerOpacity = layer.opacity) == null ? void 0 : layerOpacity.initial) === void 0 ? 1 : layer.opacity.initial
+        }
+      })
+
+
+      const fatherHeight = banner.clientHeight,
+        fatherWidth = banner.clientWidth,
+        ratio = fatherHeight / 155;//响应式相对最小高度155的比例【如果是大屏幕就根据前面css讲到的vw米算高度,值会大于155px)
+      layers.map((layer) => {
+        layer.resources.map((resource, resourceKey) => {
+          if (!/\.(webm | mp4)$/.test(resource.src)) {
+            const imgElement = document.createElement('img');
+            imgElement.src = resource.src
+            layer.resources[resourceKey].el = imgElement
+            //    设可dataset自序义数据布高風性
+            const eachElement = layer.resources[resourceKey].el;
+            eachElement.dataset.height = eachElement.naturalHeight.toString()
+            eachElement.dataset.width = eachElement.naturalWidth.toString()
+            //     这一步看定义的 sale没有,没有按1自生长宽来算
+            let scaleA, ScaleB;
+            const initialScale = ((scaleA = layer.scale) === null ? void 0 : scaleA.initial) === void 0 ? 1 : (scaleB = layer.scale) == null ? void 0 : scaleB.initial
+            const eachElementHeight = Number(eachElement.dataset.height) * ratio * initialScale,
+              eachElementWidth = Number(eachElement.dataset.width) * ratio * initialScale;
+            // 设置素材宽高样式
+            eachElement.height = eachElementHeight;
+            eachElement.width = eachElementWidth;
+            eachElement.style.height = eachElementHeight + "px";
+            eachElement.style.width = eachElementWidth + "px";
+          }
+        })
+      })
+
+
+
+      const divElementArr = layers.map(() => {
+        const divElement = document.createElement('div')
+        divElement.classList.add('layer')
+        banner.appendChild(divElement)
+        return divElement
+      });
+
+
+      const animationFrame = () => {
+        try {
+          divElementArr.map((divElement, divElementKey) => {
+            const layer = layers[divElementKey],
+              imgElement = divElement.firstChild;
+            const styleObj = {
+              scale: initialStyleObj[divElementKey].scale,
+              rotate: initialStyleObj[divElementKey].rotate,
+              translate: initialStyleObj[divElementKey].translate
+            }
+            // 元素x和y偏移处理
+            if (layer.translate) {
+              const layerOffset = layer.translate.offset || [0, 0]
+                , translateArray = layerOffset.map(v => {
+                  return relativeX * v
+                })
+                , res = initialStyleObj[divElementKey].translate.map((val, key) => {
+                  let at;
+                  return (val + translateArray[key]) * ratio * (((at = layer.scale) == null ? void 0 : at.initial) || 1)
+                });
+              styleObj.translate = res
+            }
+            //  设置图片的transform属性
+            imgElement.style.transform = `translate(${styleObj.translate[0] * (layer.is || 1)}px, ${styleObj.translate[1]}px) rotate(${styleObj.rotate}deg) scale(${styleObj.scale})`
+          })
+
+        }
+        catch (err) {
+          console.log('err', err)
+        }
+      }
+
+
+
+      layers.map((layer, layerKey) => {
+        const layerElement = layer.resources[0].el;
+        divElementArr[layerKey].appendChild(layerElement)
+        //初始执行动画（好处：流畅、更高性能的动画】
+        requestAnimationFrame(animationFrame)
+      })
+
+
+      const mouseMoveEvent = event => {
+        //如果在banner范围內，运行 animationFrame
+        if (document.documentElement.scrollTop + event.clientY < fatherHeight) {
+          // console.log(document.documentElement.scrollTop ,event.clientY);
+          // 鼠标指针左右相对值比率
+          relativeX = event.clientX / fatherWidth
+          requestAnimationFrame(animationFrame)
+        }
+      }
+      // / 监听園标事件
+      window.addEventListener("mousemove", mouseMoveEvent)
+      window.addEventListener("mouseout", () => {
+        relativeX = 0
+        requestAnimationFrame(animationFrame)
+      })
+
+    </script>
+</body>
+
+</html>
