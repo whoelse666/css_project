@@ -240,6 +240,8 @@
 230. HTML5+CSS3+JS小实例：原生JS实现全屏滚动
 231. HTML5+CSS3小实例：文字边框视觉错位
 232. HTML5+CSS3小实例：旋转中的视差效果
+233. HTML5+CSS3小实例：环形文字加载动画
+234. HTML5+CSS3+JS小实例：圣诞按钮
 
 #### 赞赏作者
 ![image](https://gitee.com/wyanhui02/html_css_demo/raw/master/images/%E8%B5%9E%E8%B5%8F%E4%BD%9C%E8%80%85/%E8%B5%9E%E8%B5%8F%E7%A0%81.jpg)
