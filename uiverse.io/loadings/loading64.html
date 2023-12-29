@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+       .progress {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 5px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  width: 300px;
+  margin-top: 30%;
+
+    
+  -webkit-backface-visibility: hidden;
+
+    
+          backface-visibility: hidden;
+}
+
+.inner:nth-child(1),
+.inner:nth-child(2),
+.inner:nth-child(3),
+.inner:nth-child(4),
+.inner:nth-child(5) {
+  height: 20px;
+  width: 20px;
+  border-radius: 3px;
+  -webkit-animation: progress 1.2s ease-in infinite;
+          animation: progress 1.2s ease-in infinite;
+}
+
+.inner:nth-child(1) {
+  background-color: #2193b0;
+  -webkit-animation-delay: 0.15s;
+          animation-delay: 0.15s;
+}
+
+.inner:nth-child(2) {
+  background-color: #48b1bf;
+  -webkit-animation-delay: 0.25s;
+          animation-delay: 0.25s;
+}
+
+.inner:nth-child(3) {
+  background-color: #56ab2f;
+  -webkit-animation-delay: 0.35s;
+          animation-delay: 0.35s;
+}
+
+.inner:nth-child(4) {
+  background-color: #614385;
+  -webkit-animation-delay: 0.45s;
+          animation-delay: 0.45s;
+}
+
+.inner:nth-child(5) {
+  background-color: #185a9d;
+  -webkit-animation-delay: 0.55s;
+          animation-delay: 0.55s;
+}
+
+@-webkit-keyframes progress {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    opacity: 1;
+  }
+
+  50% {
+    -webkit-transform: translateY(-60px);
+            transform: translateY(-60px);
+    opacity: 0.8;
+  }
+
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes progress {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    opacity: 1;
+  }
+
+  50% {
+    -webkit-transform: translateY(-60px);
+            transform: translateY(-60px);
+    opacity: 0.8;
+  }
+
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+
+    </style>
+  </head>
+  <body>
+<div class="progress">
+      <div class="inner"></div>
+      <div class="inner"></div>
+      <div class="inner"></div>
+      <div class="inner"></div>
+      <div class="inner"></div>
+    </div>
+    
+  </body>
+</html>
