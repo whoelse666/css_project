@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+  .chaotic-orbit {
+ --uib-size: 25px;
+ --uib-speed: 1.5s;
+ --uib-color: black;
+ position: relative;
+ display: -webkit-box;
+ display: -ms-flexbox;
+ display: flex;
+ -webkit-box-align: center;
+     -ms-flex-align: center;
+         align-items: center;
+ -webkit-box-pack: center;
+     -ms-flex-pack: center;
+         justify-content: center;
+ height: var(--uib-size);
+ width: var(--uib-size);
+ -webkit-animation: rotate936 calc(var(--uib-speed) * 1.667) infinite linear;
+         animation: rotate936 calc(var(--uib-speed) * 1.667) infinite linear;
+}
+
+.chaotic-orbit::before,
+.chaotic-orbit::after {
+ content: '';
+ position: absolute;
+ height: 60%;
+ width: 60%;
+ border-radius: 50%;
+ background-color: var(--uib-color);
+ will-change: transform;
+ -ms-flex-negative: 0;
+     flex-shrink: 0;
+}
+
+.chaotic-orbit::before {
+ -webkit-animation: orbit var(--uib-speed) linear infinite;
+         animation: orbit var(--uib-speed) linear infinite;
+}
+
+.chaotic-orbit::after {
+ -webkit-animation: orbit var(--uib-speed) linear calc(var(--uib-speed) / -2)
+    infinite;
+         animation: orbit var(--uib-speed) linear calc(var(--uib-speed) / -2)
+    infinite;
+}
+
+@-webkit-keyframes rotate936 {
+ 0% {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+ }
+
+ 100% {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+ }
+}
+
+@keyframes rotate936 {
+ 0% {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+ }
+
+ 100% {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+ }
+}
+
+@-webkit-keyframes orbit {
+ 0% {
+  -webkit-transform: translate(calc(var(--uib-size) * 0.5)) scale(0.73684);
+          transform: translate(calc(var(--uib-size) * 0.5)) scale(0.73684);
+  opacity: 0.65;
+ }
+
+ 5% {
+  -webkit-transform: translate(calc(var(--uib-size) * 0.4)) scale(0.684208);
+          transform: translate(calc(var(--uib-size) * 0.4)) scale(0.684208);
+  opacity: 0.58;
+ }
+
+ 10% {
+  -webkit-transform: translate(calc(var(--uib-size) * 0.3)) scale(0.631576);
+          transform: translate(calc(var(--uib-size) * 0.3)) scale(0.631576);
+  opacity: 0.51;
+ }
+
+ 15% {
+  -webkit-transform: translate(calc(var(--uib-size) * 0.2)) scale(0.578944);
+          transform: translate(calc(var(--uib-size) * 0.2)) scale(0.578944);
+  opacity: 0.44;
+ }
+
+ 20% {
+  -webkit-transform: translate(calc(var(--uib-size) * 0.1)) scale(0.526312);
+          transform: translate(calc(var(--uib-size) * 0.1)) scale(0.526312);
+  opacity: 0.37;
+ }
+
+ 25% {
+  -webkit-transform: translate(0%) scale(0.47368);
+          transform: translate(0%) scale(0.47368);
+  opacity: 0.3;
+ }
+
+ 30% {
+  -webkit-transform: translate(calc(var(--uib-size) * -0.1)) scale(0.526312);
+          transform: translate(calc(var(--uib-size) * -0.1)) scale(0.526312);
+  opacity: 0.37;
+ }
+
+ 35% {
+  -webkit-transform: translate(calc(var(--uib-size) * -0.2)) scale(0.578944);
+          transform: translate(calc(var(--uib-size) * -0.2)) scale(0.578944);
+  opacity: 0.44;
+ }
+
+ 40% {
+  -webkit-transform: translate(calc(var(--uib-size) * -0.3)) scale(0.631576);
+          transform: translate(calc(var(--uib-size) * -0.3)) scale(0.631576);
+  opacity: 0.51;
+ }
+
+ 45% {
+  -webkit-transform: translate(calc(var(--uib-size) * -0.4)) scale(0.684208);
+          transform: translate(calc(var(--uib-size) * -0.4)) scale(0.684208);
+  opacity: 0.58;
+ }
+
+ 50% {
+  -webkit-transform: translate(calc(var(--uib-size) * -0.5)) scale(0.73684);
+          transform: translate(calc(var(--uib-size) * -0.5)) scale(0.73684);
+  opacity: 0.65;
+ }
+
+ 55% {
+  -webkit-transform: translate(calc(var(--uib-size) * -0.4)) scale(0.789472);
+          transform: translate(calc(var(--uib-size) * -0.4)) scale(0.789472);
+  opacity: 0.72;
+ }
+
+ 60% {
+  -webkit-transform: translate(calc(var(--uib-size) * -0.3)) scale(0.842104);
+          transform: translate(calc(var(--uib-size) * -0.3)) scale(0.842104);
+  opacity: 0.79;
+ }
+
+ 65% {
+  -webkit-transform: translate(calc(var(--uib-size) * -0.2)) scale(0.894736);
+          transform: translate(calc(var(--uib-size) * -0.2)) scale(0.894736);
+  opacity: 0.86;
+ }
+
+ 70% {
+  -webkit-transform: translate(calc(var(--uib-size) * -0.1)) scale(0.947368);
+          transform: translate(calc(var(--uib-size) * -0.1)) scale(0.947368);
+  opacity: 0.93;
+ }
+
+ 75% {
+  -webkit-transform: translate(0%) scale(1);
+          transform: translate(0%) scale(1);
+  opacity: 1;
+ }
+
+ 80% {
+  -webkit-transform: translate(calc(var(--uib-size) * 0.1)) scale(0.947368);
+          transform: translate(calc(var(--uib-size) * 0.1)) scale(0.947368);
+  opacity: 0.93;
+ }
+
+ 85% {
+  -webkit-transform: translate(calc(var(--uib-size) * 0.2)) scale(0.894736);
+          transform: translate(calc(var(--uib-size) * 0.2)) scale(0.894736);
+  opacity: 0.86;
+ }
+
+ 90% {
+  -webkit-transform: translate(calc(var(--uib-size) * 0.3)) scale(0.842104);
+          transform: translate(calc(var(--uib-size) * 0.3)) scale(0.842104);
+  opacity: 0.79;
+ }
+
+ 95% {
+  -webkit-transform: translate(calc(var(--uib-size) * 0.4)) scale(0.789472);
+            transform: translate(calc(var(--uib-size) * 0.4)) scale(0.789472);
+              opacity: 1;
+ }
+
+}
+
+    </style>
+  </head>
+  <body>
+  
+<div class="chaotic-orbit"></div>
+  </body>
+</html>

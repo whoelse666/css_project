@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+
+      body{
+        background-color: black;
+      }
+     .spinner {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 50%;
+  margin-left: -75px;
+}
+
+.spinner span {
+  position: absolute;
+  top: 50%;
+  left: var(--left);
+  width: 35px;
+  height: 7px;
+  background: #ffff;
+  -webkit-animation: dominos 1s ease infinite;
+          animation: dominos 1s ease infinite;
+  -webkit-box-shadow: 2px 2px 3px 0px black;
+          box-shadow: 2px 2px 3px 0px black;
+}
+
+.spinner span:nth-child(1) {
+  --left: 80px;
+  -webkit-animation-delay: 0.125s;
+          animation-delay: 0.125s;
+}
+
+.spinner span:nth-child(2) {
+  --left: 70px;
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+
+.spinner span:nth-child(3) {
+  left: 60px;
+  -webkit-animation-delay: 0.425s;
+          animation-delay: 0.425s;
+}
+
+.spinner span:nth-child(4) {
+  -webkit-animation-delay: 0.54s;
+          animation-delay: 0.54s;
+  left: 50px;
+}
+
+.spinner span:nth-child(5) {
+  -webkit-animation-delay: 0.665s;
+          animation-delay: 0.665s;
+  left: 40px;
+}
+
+.spinner span:nth-child(6) {
+  -webkit-animation-delay: 0.79s;
+          animation-delay: 0.79s;
+  left: 30px;
+}
+
+.spinner span:nth-child(7) {
+  -webkit-animation-delay: 0.915s;
+          animation-delay: 0.915s;
+  left: 20px;
+}
+
+.spinner span:nth-child(8) {
+  left: 10px;
+}
+
+@-webkit-keyframes dominos {
+  50% {
+    opacity: 0.7;
+  }
+
+  75% {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+
+  80% {
+    opacity: 1;
+  }
+}
+
+@keyframes dominos {
+  50% {
+    opacity: 0.7;
+  }
+
+  75% {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+
+  80% {
+    opacity: 1;
+  }
+}
+
+    </style>
+  </head>
+  <body>
+ <div class="spinner">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+ 
+  </body>
+</html>

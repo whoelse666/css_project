@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+    .card {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+  position: relative;
+  -webkit-transition: 1s;
+  transition: 1s;
+  -webkit-animation: rotate 1s linear infinite;
+          animation: rotate 1s linear infinite;
+}
+
+.card .conic_back1 {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  background: conic-gradient(transparent, transparent, transparent, crimson);
+}
+
+.card .conic_back2 {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+  background: conic-gradient(transparent, transparent, transparent, orange);
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    width: 0px;
+    height: 0px;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+
+  30% {
+    width: 45px;
+    height: 45px;
+    -webkit-transform: rotate(100deg);
+            transform: rotate(100deg);
+  }
+
+  60% {
+    width: 35px;
+    height: 35px;
+    -webkit-filter: blur(1px);
+            filter: blur(1px);
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(1240deg);
+            transform: rotate(1240deg);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    width: 0px;
+    height: 0px;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+
+  30% {
+    width: 45px;
+    height: 45px;
+    -webkit-transform: rotate(100deg);
+            transform: rotate(100deg);
+  }
+
+  60% {
+    width: 35px;
+    height: 35px;
+    -webkit-filter: blur(1px);
+            filter: blur(1px);
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(1240deg);
+            transform: rotate(1240deg);
+  }
+}
+
+
+    </style>
+  </head>
+  <body>
+ 
+<div class="card">
+  <div class="conic_back1"></div>
+  <div class="conic_back2"></div>
+</div>
+  </body>
+</html>
