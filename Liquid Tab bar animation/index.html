@@ -1,0 +1,48 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" href="./index.css" />
+  <title>Liquid Tab bar animation</title>
+</head>
+
+<body>
+  <nav class="tabbar">
+    <ul>
+      <li class="active calendar"><a href="">
+          <div></div><span>Events</span>
+        </a></li>
+      <li class=" files"><a href="">
+          <div></div><span>Files</span>
+        </a></li>
+      <li class=" notification"><a href="">
+          <div></div><span>Notification</span>
+        </a></li>
+      <li class=" settings"><a href="">
+          <div></div><span>Settings</span>
+        </a></li>
+    </ul>
+  </nav>
+  <a class="dribbble" href="https://dribbble.com/shots/7164420-Liquid-tab-bar-animation" target="_blank"><img
+      src="https://cdn.dribbble.com/assets/dribbble-ball-mark-2bd45f09c2fb58dbbfb44766d5d1d07c5a12972d602ef8b32204d28fa3dda554.svg" /></a>
+    <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+  <script>  $('.tabbar ul li a').click(function (e) {
+
+      let link = $(this),
+        li = link.parent();
+
+      setActive(li.parent(), li);
+
+      return false;
+
+    });
+
+    function setActive(nav, li) {
+      nav.find('li').removeClass('active');
+      li.addClass('active');
+      nav.css('--x', li.position().left + li.outerWidth() / 2 + 'px');
+    }
+  </script>
+</body>
+
+</html>
