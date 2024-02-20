@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+  
+  .btn-class-name {
+  --primary: 255, 90, 120;
+  --secondary: 150, 50, 60;
+  width: 60px;
+  height: 50px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  outline: 10px solid rgb(var(--primary), .5);
+  border-radius: 100%;
+  position: relative;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.btn-class-name .back {
+  background: rgb(var(--secondary));
+  border-radius: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-class-name .front {
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(20%, rgba(var(--primary), .6)), color-stop(50%, rgba(var(--primary))));
+  background: linear-gradient(0deg, rgba(var(--primary), .6) 20%, rgba(var(--primary)) 50%);
+  -webkit-box-shadow: 0 .5em 1em -0.2em rgba(var(--secondary), .5);
+          box-shadow: 0 .5em 1em -0.2em rgba(var(--secondary), .5);
+  border-radius: 100%;
+  position: absolute;
+  border: 1px solid rgb(var(--secondary));
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: inherit;
+  -webkit-transform: translateY(-15%);
+      -ms-transform: translateY(-15%);
+          transform: translateY(-15%);
+  -webkit-transition: .15s;
+  transition: .15s;
+  color: rgb(var(--secondary));
+}
+
+.btn-class-name:active .front {
+  -webkit-transform: translateY(0%);
+      -ms-transform: translateY(0%);
+          transform: translateY(0%);
+  -webkit-box-shadow: 0 0;
+          box-shadow: 0 0;
+} 
+    </style>
+  </head>
+  <body>
+  <button class="btn-class-name">
+  <span class="back"></span>
+  <span class="front"></span>
+</button> 
+
+  </body>
+</html>
