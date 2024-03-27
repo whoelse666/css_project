@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+ button {
+  -webkit-transform: rotate(-25deg) skew(25deg);
+      -ms-transform: rotate(-25deg) skew(25deg);
+          transform: rotate(-25deg) skew(25deg);
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  position: relative;
+  list-style: none;
+  width: 100px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button:before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: -5px;
+  width: 100%;
+  height: 10px;
+  background: #2a2a2a;
+  -webkit-transform: skewX(-41deg);
+      -ms-transform: skewX(-41deg);
+          transform: skewX(-41deg);
+}
+
+button:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: -9px;
+  width: 9px;
+  height: 100%;
+  background: #2a2a2a;
+  -webkit-transform: skewY(-49deg);
+      -ms-transform: skewY(-49deg);
+          transform: skewY(-49deg);
+}
+
+button span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #2a2a2a;
+  color: #fff;
+  font-size: 25px;
+  -webkit-transition: 1.1s ease-out;
+  transition: 1.1s ease-out;
+}
+
+button:hover span {
+  z-index: 1000;
+  -webkit-transition: .3s;
+  transition: .3s;
+  color: #fff;
+}
+
+button:hover span:nth-child(5) {
+  -webkit-transform: translate(40px, -40px);
+      -ms-transform: translate(40px, -40px);
+          transform: translate(40px, -40px);
+  opacity: 1;
+}
+
+button:hover span:nth-child(4) {
+  -webkit-transform: translate(30px, -30px);
+      -ms-transform: translate(30px, -30px);
+          transform: translate(30px, -30px);
+  opacity: .8;
+}
+
+button:hover span:nth-child(3) {
+  -webkit-transform: translate(20px, -20px);
+      -ms-transform: translate(20px, -20px);
+          transform: translate(20px, -20px);
+  opacity: .6;
+}
+
+button:hover span:nth-child(2) {
+  -webkit-transform: translate(10px, -10px);
+      -ms-transform: translate(10px, -10px);
+          transform: translate(10px, -10px);
+  opacity: .4;
+}
+
+button:hover span:nth-child(1) {
+  -webkit-transform: translate(0px, 0px);
+      -ms-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+  opacity: .2;
+}
+
+button:active span:nth-child(5) {
+  -webkit-transform: translate(20px, -20px);
+      -ms-transform: translate(20px, -20px);
+          transform: translate(20px, -20px);
+  opacity: 1;
+}
+
+button:active span:nth-child(4) {
+  -webkit-transform: translate(15px, -15px);
+      -ms-transform: translate(15px, -15px);
+          transform: translate(15px, -15px);
+}
+
+button:active span:nth-child(3) {
+  -webkit-transform: translate(10px, -10px);
+      -ms-transform: translate(10px, -10px);
+          transform: translate(10px, -10px);
+}
+
+button:active span:nth-child(2) {
+  -webkit-transform: translate(5px, -5px);
+      -ms-transform: translate(5px, -5px);
+          transform: translate(5px, -5px);
+}
+
+button:active span:nth-child(1) {
+  -webkit-transform: translate(0px, 0px);
+      -ms-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+}
+
+button:nth-child(1):hover span {
+  background: #52E19F;
+} 
+   
+    </style>
+  </head>
+  <body>
+   
+<button>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span>Button</span>
+</button>
+  </body>
+</html>
