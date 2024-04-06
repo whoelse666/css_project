@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D卡片效果</title>
+    <style>
+      body {
+        width: 100vw;
+
+        height: 100vh;
+
+        margin: 0;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+        background-color: #fff;
+      }
+
+      .card {
+        transform: translateY (-50%);
+        width: 200px;
+        height: 300px;
+        margin: 0 50px;
+        position: relative;
+
+        /* overflow:hidden ; */
+      }
+
+      .card img {
+        width: 100%;
+
+        position: absolute;
+        transition: 0.5s;
+      }
+
+      .cover {
+        z-index: 1;
+        height: 100%;
+      }
+
+      .card:hover .cover {
+        box-shadow: 0 35px 35px -8px rgba(0, 0, 0, 0.7);
+        transform: perspective(500px) rotateX(25deg);
+      }
+
+      .hero {
+        z-index: 2;
+        opacity: 0;
+        height: 100%;
+      }
+
+      .card:hover .hero {
+        opacity: 1;
+        transform: perspective(500px) translate3d(0, -50px, 50px);
+      }
+
+      .title {
+        z-index: 3;
+        bottom: 0;
+      }
+
+      .card:hover .title {
+        transform: perspective(500px) translate3d(0, -25px, 50px);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="card">
+      <img
+        src="https://p6-pc-sign.douyinpic.com/tos-cn-i-0813/956d103576664b0aa7b30c62323a483e~tplv-dy-aweme-images:q75.webp?biz_tag=aweme_images&from=327834062&s=PackSourceEnum_SEARCH&sc=image&se=false&x-expires=1714460400&x-signature=3xHzz1W7cRl8u5kKs7FwBTMdMK8%3D"
+        class="cover"
+      />
+      <img src="https://pic55.photophoto.cn/20200507/0017029527498020_b.jpg" class="title" />
+      <img src="http://www.acgrenwu.cn/uploads/allimg/170913/1-1F9131R24U48.jpg" class="hero" />
+    </div>
+    <div class="card">
+      <img
+        src="https://p6-pc-sign.douyinpic.com/tos-cn-i-0813/956d103576664b0aa7b30c62323a483e~tplv-dy-aweme-images:q75.webp?biz_tag=aweme_images&from=327834062&s=PackSourceEnum_SEARCH&sc=image&se=false&x-expires=1714460400&x-signature=3xHzz1W7cRl8u5kKs7FwBTMdMK8%3D"
+        class="cover"
+      />
+      <img src="https://pic55.photophoto.cn/20200507/0017029527498020_b.jpg" class="title" />
+      <img src="http://www.acgrenwu.cn/uploads/allimg/170912/1-1F9121Q04U15.jpg" class="hero" />
+    </div>
+    <script></script>
+  </body>
+</html>
