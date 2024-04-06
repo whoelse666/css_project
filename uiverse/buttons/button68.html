@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body{
+        background-color: #212121 ;
+      }
+ button,button::after {
+  padding: 10px 50px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: transparent;
+  position: relative;
+}
+
+button::after {
+  --move1: inset(50% 50% 50% 50%);
+  --move2: inset(31% 0 40% 0);
+  --move3: inset(39% 0 15% 0);
+  --move4: inset(45% 0 40% 0);
+  --move5: inset(45% 0 6% 0);
+  --move6: inset(14% 0 61% 0);
+  -webkit-clip-path: var(--move1);
+          clip-path: var(--move1);
+  content: 'GLITCH';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+}
+
+button:hover::after {
+  -webkit-animation: glitch_4011 1s;
+          animation: glitch_4011 1s;
+  text-shadow: 10 10px 10px black;
+  -webkit-animation-timing-function: steps(2, end);
+          animation-timing-function: steps(2, end);
+  text-shadow: -3px -3px 0px #1df2f0, 3px 3px 0px #E94BE8;
+  background-color: transparent;
+  border: 3px solid rgb(0, 255, 213);
+}
+
+button:hover {
+  text-shadow: -1px -1px 0px #1df2f0, 1px 1px 0px #E94BE8;
+}
+
+button:hover {
+  background-color: transparent;
+  border: 1px solid rgb(0, 255, 213);
+  -webkit-box-shadow: 0px 10px 10px -10px rgb(0, 255, 213);
+          box-shadow: 0px 10px 10px -10px rgb(0, 255, 213);
+}
+
+@-webkit-keyframes glitch_4011 {
+  0% {
+    -webkit-clip-path: var(--move1);
+            clip-path: var(--move1);
+    -webkit-transform: translate(0px,-10px);
+            transform: translate(0px,-10px);
+  }
+
+  10% {
+    -webkit-clip-path: var(--move2);
+            clip-path: var(--move2);
+    -webkit-transform: translate(-10px,10px);
+            transform: translate(-10px,10px);
+  }
+
+  20% {
+    -webkit-clip-path: var(--move3);
+            clip-path: var(--move3);
+    -webkit-transform: translate(10px,0px);
+            transform: translate(10px,0px);
+  }
+
+  30% {
+    -webkit-clip-path: var(--move4);
+            clip-path: var(--move4);
+    -webkit-transform: translate(-10px,10px);
+            transform: translate(-10px,10px);
+  }
+
+  40% {
+    -webkit-clip-path: var(--move5);
+            clip-path: var(--move5);
+    -webkit-transform: translate(10px,-10px);
+            transform: translate(10px,-10px);
+  }
+
+  50% {
+    -webkit-clip-path: var(--move6);
+            clip-path: var(--move6);
+    -webkit-transform: translate(-10px,10px);
+            transform: translate(-10px,10px);
+  }
+
+  60% {
+    -webkit-clip-path: var(--move1);
+            clip-path: var(--move1);
+    -webkit-transform: translate(10px,-10px);
+            transform: translate(10px,-10px);
+  }
+
+  70% {
+    -webkit-clip-path: var(--move3);
+            clip-path: var(--move3);
+    -webkit-transform: translate(-10px,10px);
+            transform: translate(-10px,10px);
+  }
+
+  80% {
+    -webkit-clip-path: var(--move2);
+            clip-path: var(--move2);
+    -webkit-transform: translate(10px,-10px);
+            transform: translate(10px,-10px);
+  }
+
+  90% {
+    -webkit-clip-path: var(--move4);
+            clip-path: var(--move4);
+    -webkit-transform: translate(-10px,10px);
+            transform: translate(-10px,10px);
+  }
+
+  100% {
+    -webkit-clip-path: var(--move1);
+            clip-path: var(--move1);
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+
+@keyframes glitch_4011 {
+  0% {
+    -webkit-clip-path: var(--move1);
+            clip-path: var(--move1);
+    -webkit-transform: translate(0px,-10px);
+            transform: translate(0px,-10px);
+  }
+
+  10% {
+    -webkit-clip-path: var(--move2);
+            clip-path: var(--move2);
+    -webkit-transform: translate(-10px,10px);
+            transform: translate(-10px,10px);
+  }
+
+  20% {
+    -webkit-clip-path: var(--move3);
+            clip-path: var(--move3);
+    -webkit-transform: translate(10px,0px);
+            transform: translate(10px,0px);
+  }
+
+  30% {
+    -webkit-clip-path: var(--move4);
+            clip-path: var(--move4);
+    -webkit-transform: translate(-10px,10px);
+            transform: translate(-10px,10px);
+  }
+
+  40% {
+    -webkit-clip-path: var(--move5);
+            clip-path: var(--move5);
+    -webkit-transform: translate(10px,-10px);
+            transform: translate(10px,-10px);
+  }
+
+  50% {
+    -webkit-clip-path: var(--move6);
+            clip-path: var(--move6);
+    -webkit-transform: translate(-10px,10px);
+            transform: translate(-10px,10px);
+  }
+
+  60% {
+    -webkit-clip-path: var(--move1);
+            clip-path: var(--move1);
+    -webkit-transform: translate(10px,-10px);
+            transform: translate(10px,-10px);
+  }
+
+  70% {
+    -webkit-clip-path: var(--move3);
+            clip-path: var(--move3);
+    -webkit-transform: translate(-10px,10px);
+            transform: translate(-10px,10px);
+  }
+
+  80% {
+    -webkit-clip-path: var(--move2);
+            clip-path: var(--move2);
+    -webkit-transform: translate(10px,-10px);
+            transform: translate(10px,-10px);
+  }
+
+  90% {
+    -webkit-clip-path: var(--move4);
+            clip-path: var(--move4);
+    -webkit-transform: translate(-10px,10px);
+            transform: translate(-10px,10px);
+  }
+
+  100% {
+    -webkit-clip-path: var(--move1);
+            clip-path: var(--move1);
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+
+
+   
+    </style>
+  </head>
+  <body>
+   
+<button>
+  GLITCH
+</button>
+  </body>
+</html>
