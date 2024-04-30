@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>css响应式文本.html</title>
+    <style>
+      #container {
+        columns: 200px 2;
+        column-gap: 30px;
+        font-size: 16px;
+        padding: 25px;
+      }
+
+      .title {
+        column-span: all;
+        /* column-span 的值被设置为 all 时，可以让一个元素跨越所有的列 */
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <p class="title">
+        2023 年 12 月 31 日，vue2 已经停止维护了。你还不会 Vue3 的源码么？ 手把手带你实现一个 vue3 响应式系统，你将获得： Vue3
+        的响应式的数据结构是什么样？为什么是这样？如何形成的？ Proxy 为什么要配合 Reflect 使用？如果不配合会有什么问题？ Map 与 WeakMap的区别 响应式数据以及副作用函数
+        响应式系统基本实现
+      </p>
+
+      <h2>这是一个跨越了所有的列的标题</h2>
+      <p>h2 元素应该跨越所有列。文本的其余内容应该分布在各列中。</p>
+      <p>这是一些使用 CSS `columns` 属性分成三列的文本。文本在各列中均匀分布。</p>
+      <p>这是一些使用 CSS `columns` 属性分成三列的文本。文本在各列中均匀分布。</p>
+      <p>这是一些使用 CSS `columns` 属性分成三列的文本。文本在各列中均匀分布。</p>
+      <p>这是一些使用 CSS `columns` 属性分成三列的文本。文本在各列中均匀分布。</p>
+    </div>
+  </body>
+</html>
