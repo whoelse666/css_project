@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>利用贝塞尔曲线实现复杂动画</title>
+</head>
+<style>
+    h3 {
+        text-align:center;
+    }
+    .demo {
+        height:35px;
+        border-bottom:2px solid #ccc;
+        position:relative;
+        margin:40px;
+        font-size:12px;
+        font-family:"Microsoft YaHei";
+    }
+    .demo p {
+        position:absolute;
+        z-index:0;
+        right:10px;
+        bottom:10px;
+        color:#999;
+    }
+    .demo .box {
+        width:35px;
+        height:35px;
+        line-height:35px;
+        position:relative;
+        -webkit-border-radius:100%;
+        -moz-border-radius:100%;
+        border-radius:100%;
+        background:#f07709;
+        color:#fff;
+        text-align:center;
+        font-family:Georgia;
+        z-index:1;
+        left:0;
+    }
+
+
+    .demo:hover .box{ 
+        left:365px;
+        -webkit-transform: rotate(2880deg);
+        -moz-transform: rotate(2880deg);
+        -o-transform: rotate(2880deg);
+        -ms-transform: rotate(2880deg);
+        transform: rotate(2880deg);
+    }
+
+    #demoA .box{ 
+        -webkit-transition:1.5s all cubic-bezier(1,-0.39,.36,1.44) 0.2s;  
+        -moz-transition:1.5s all cubic-bezier(1,-0.39,.36,1.44) 0.2s; 
+        -o-transition:1.5s all cubic-bezier(1,-0.39,.36,1.44) 0.2s; 
+        transition:1.5s all cubic-bezier(1,-0.39,.36,1.44) 0.2s; 
+    }
+
+    #demoB .box{ 
+        -webkit-transition:1.5s all cubic-bezier(.4,.46,.3,1.31) 0.2s; 
+        -moz-transition:1.5s all cubic-bezier(.4,.46,.3,1.31) 0.2s; 
+        -o-transition:1.5s all cubic-bezier(.4,.46,.3,1.31) 0.2s;  
+        transition:1.5s all cubic-bezier(.4,.46,.3,1.31) 0.2s; 
+        background:#0080c0; 
+    }
+
+
+    #demoC .box{ 
+        -webkit-transition:1.5s all cubic-bezier(.6,-0.1,1,-0.18) 0.2s; 
+        -moz-transition:1.5s all cubic-bezier(.6,-0.1,1,-0.18) 0.2s; 
+        -o-transition:1.5s all cubic-bezier(.6,-0.1,1,-0.18) 0.2s;  
+        transition:1.5s all cubic-bezier(.6,-0.1,1,-0.18) 0.2s; 
+        background:#00a600; 
+    }
+
+    #demoD .box{ 
+        -webkit-transition:2.5s all cubic-bezier(.15,.93,.9,.08) 0.2s; 
+        -moz-transition:2.5s all cubic-bezier(.15,.93,.9,.08) 0.2s; 
+        -o-transition:2.5s all cubic-bezier(.15,.93,.9,.08) 0.2s;  
+        transition:2.5s all cubic-bezier(.15,.93,.9,.08) 0.2s; 
+        background:#f7007b; 
+    }
+</style>
+<body>
+    <h3>利用贝塞尔曲线实现复杂动画</h3>
+    <div class="demo" id="demoA">
+        <div class="box">^_^</div>
+        <p>cubic-bezier:(1,-0.39,.36,1.44)</p>
+    </div>
+    <div class="demo" id="demoB">
+        <div class="box">^_^</div>
+        <p>cubic-bezier:(.4,.46,.3,1.31)</p>
+    </div>
+    <div class="demo" id="demoC">
+        <div class="box">^_^</div>
+        <p>cubic-bezier:(.6,-0.1,1,-0.18)</p>
+    </div>
+    <div class="demo" id="demoD">
+        <div class="box">^_^</div>
+        <p>cubic-bezier:(.15,.93,.9,.08)</p>
+    </div>
+</body>
+</html>
