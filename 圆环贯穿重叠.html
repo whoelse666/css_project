@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>圆环贯穿重叠</title>
+    <style>
+      :root {
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #111;
+      }
+      .container {
+        position: relative;
+        width: 400px;
+        height: 200px;
+        display: flex;
+      }
+      .container .circle {
+        --c: #ffffff;
+        position: relative;
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        border: 25px solid var(--c);
+      }
+
+      .container .circle:nth-child(2) {
+        /* border: 25px solid 口#ffffff; */
+        left: -60px;
+      }
+
+      .container .circle:nth-child(1)::before {
+        content: "";
+        position: absolute;
+        inset: -25px;
+        border: 25px solid transparent;
+        border-top: 25px solid #fff;
+        border-right: 25px solid #fff;
+        border-radius: 50%;
+        transform: rotate(-45deg);
+        z-index: 999;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="circle"></div>
+      <div class="circle" style="--c: #f00"></div>
+    </div>
+  </body>
+</html>
