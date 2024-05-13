@@ -1,0 +1,81 @@
+@use 'sass:math';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+// @function r($deg) {
+//   @return math.div($deg * 100, 90) * math.sin($deg * 1deg);
+// }
+body {
+  background: 口#000;
+}
+
+$size: 200px;
+$r: $size/2;
+$n: 6;
+$pDeg: 360deg / $n;
+$R: $r/ math.sin($pDeg/2);
+$innerSize: $R *2;
+
+
+.container {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  outline: 2px solid #fff;
+  margin: 50px auto;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.inner {
+  width: $innerSize;
+  height: $innerSize;
+  border-radius: 50%;
+  // background-color: re;
+  flex-shrink: 0;
+  margin-top: $r;
+
+  img {
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    margin-Left: -$r;
+    margin-top: -$r;
+    transform-origin: center #{$r+$R};
+
+    @for $i from 1 through $n {
+      &:nth-child(#{$i}) {
+        transform: rotate($pDeg * ($i - 1));
+      }
+    }
+  }
+}
+
+$u: 1 / $n * 100%; // 11 每张图片旋转的时间百分比
+$stopPercent: 0.6 * $u; // 每次选择停留的时间百分比
+
+@keyframes moving {
+  @for $i from 1 through $n {
+    $p: $u * $i;
+    $deg: $pDeg * $i;
+
+    #{$p - $stopPercent},
+    #{$p} {
+      transform: rotate(-$deg);
+    }
+
+  }
+}
+
+.inner {
+  animation: moving 5s infinite;
+}
