@@ -28,7 +28,7 @@ body{
     height: 100px;
     /* 内阴影（内边框） */
     box-shadow: inset 0 0 0 1px #fff;
-    background-image: url(../../images/247.jpg);
+    background-image: url(/images/247.jpg);
     background-size: 300px 300px;
     /* 设置背景图像的起始位置，--bgX、--bgY为自定义变量，后面通过JS计算并赋值 */
     background-position: var(--bgX, 0) var(--bgY, 0);

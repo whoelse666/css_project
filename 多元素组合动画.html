@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>多元素组合动画</title>
+    <style>
+      .ball {
+        position: fixed;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        left: 100px;
+        top: 300px;
+        animation: moveX 2s ease forwards;
+
+      }
+
+      .inner {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: #fc5e56;
+        animation: moveY 2s cubic-bezier(0.5, -1.2, 1, 1) forwards;
+
+      }
+
+      @keyframes moveX {
+        to {
+          transform: translateX(250px);
+        }
+      }
+
+      @keyframes moveY {
+        to {
+          transform: translateY(400px);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- houdini api  https://zhuanlan.zhihu.com/p/686789648-->
+
+    <!-- 2. 两个元素分别设置动画,组合效果 -->
+    <div class="ball">
+      <div class="inner"></div>
+    </div>
+  </body>
+</html>
