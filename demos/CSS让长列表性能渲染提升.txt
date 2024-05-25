@@ -1,5 +1,4 @@
 两行CSS让长列表性能渲染提升 
-前端大学 2023-12-16 09:32 发表于江苏
 今天咱们来看两个可以 直接提升渲染性能的 CSS 属性。
 content-visibility
 contain-intrinsic-size

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG描边动画</title>
+    <style>
+      .line {
+        stroke: #000;
+        stroke-width: 5;
+        stroke-dasharray: var(--l);
+        stroke-dashoffset: var(--l);
+        stroke-linecap: round;
+        /* transition: stroke-dashoffset 1s; */
+        animation: stroke 2s forwards;
+        
+      }
+      @keyframes stroke {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <svg class="icon" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+      <!-- <line class="line" x1="0" y1="50%" x2="100%" y2="50%"></line> -->
+      <circle class="line"  cX="50%" cy="50%" r="40" fill="none"></circle>
+      <!-- <path class="line" d="M50 100 L150 100" stroke-linecap="round"></path> -->
+      <!-- <path id="path" d="M50 100 L150 100" stroke="black" stroke-width="10" fill="none" /> -->
+    </svg>
+    <script>
+      const paths = document.querySelectorAll(".line");
+      paths.forEach(p => {
+        const l = p.getTotalLength()+1;
+        p.style.setProperty("--l", l);
+      });
+    </script>
+  </body>
+</html>
