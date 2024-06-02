@@ -17,6 +17,66 @@
         cursor: pointer;
         filter: url(#noise);
       }
+      #svg {
+        /* filter: url(#noise); */
+      }
+      line,
+      text,
+      path,
+      polygon,
+      polyline {
+        stroke: red;
+        fill: blue;
+        stroke-width: 2;
+      }
+      path {
+        stroke: red;
+        fill: none;
+        stroke-width: 2;
+      }
+      rect {
+        fill: transparent;
+        stroke: red;
+      }
+      #rect {
+        /* filter: url(#noise); */
+        stroke-width: 1px;
+      }
+
+      svg {
+        margin-left: 100px;
+        margin-top: 100px;
+        border: 1px solid black;
+      }
+      rect {
+        fill: transparent;
+        stroke: black;
+        stroke-width: 5px;
+      }
+      polygon {
+        fill: black;
+      }
+      circle {
+        fill: transparent;
+        stroke: black;
+        stroke-width: 4px;
+      }
+      .yan {
+        fill: black;
+      }
+      .bi {
+        fill: transparent;
+        stroke: black;
+        stroke-width: 3px;
+      }
+      ellipse {
+        fill: transparent;
+        stroke: black;
+        stroke-width: 3px;
+      }
+      text {
+        stroke: red;
+      }
     </style>
   </head>
   <body>
@@ -40,15 +100,47 @@
       </defs>
     </svg>
     <div class="btn">feTurbulence</div>
-   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+
+    <svg width="500" height="500">
+      <rect x="100" y="100" rx="15" ry="15" width="300" height="300"></rect>
+      <polygon points="110 100, 130 60, 190 95, 250 60, 310 95,370 60, 390 100"></polygon>
+      <circle r="20" cx="190" cy="200"></circle>
+      <circle r="20" cx="320" cy="200"></circle>
+      <circle class="yan" r="5" cx="198" cy="208"></circle>
+      <circle class="yan" r="5" cx="328" cy="208"></circle>
+      <polygon class="bi" points="240 300, 250 260, 270 300"></polygon>
+      <ellipse rx="30" ry="10" cx="260" cy="330"></ellipse>
+      <text x="200" y="440">屏幕前的你很帅</text>
+    </svg>
+    <svg id="svg" width="500" height="500">
+      <!--  大写表示绝对定位，小写表示相对定位
+绝对坐标和相对坐标，相对于上个移动距离 -->
+      <!-- <path d="M 100 100 L 200 200 "></path> -->
+      <!-- <path d = "M 100 100 Q 200 50 300 300"></path> -->
+      <!-- <path d="M 100 100 Q 200 50 300 300 T 450 200"></path> -->
+
+      <path d="M 120 280 Q 80 460 300 310 T 450 200"></path>
+      <path d="M 120 280 Q 115 360 280 284 T 450 200"></path>
+      <!-- <path d="m 100 100 l 200 200 "></path> -->
+
+      <!-- <polygon points="100 100, 200 50, 300 100, 400 50"></polygon>
+      <polyline points="100 200, 200 150, 300 200, 400 150"></polyline>
+      <text x="400" y="150">123</text> -->
+
+      <!-- <line id="rect" x1="100" y1="100" x2="200" y2="200"></line>
+      <rect x="50" y="200" rx="10" ry="10" width="150" height="150"></rect>
+      <circle r="50" cx="200" cy="100"></circle>
+      <ellipse rx="60" ry="30" cx="100" cy="100"></ellipse> -->
+    </svg>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
 
     <script>
-      const tur = document.querySelector('feTurbulence');
-      const btn = document.querySelector('.btn');
+      const tur = document.querySelector("feTurbulence");
+      const btn = document.querySelector(".btn");
       const tl = new gsap.timeline({
         // paused: true,
         onUpdate() {
-          tur.setAttribute('baseFrequency', `0 ${val.freq}`);
+          tur.setAttribute("baseFrequency", `0 ${val.freq}`);
         }
       });
 
@@ -56,7 +148,7 @@
       tl.to(val, { freq: 0.4, duration: 0.1 });
       tl.to(val, { freq: 0.00001, duration: 0.1 });
       btn.onmouseenter = () => tl.restart();
-       btn.onmouseleave = () => tl.restart();
+      btn.onmouseleave = () => tl.restart();
       //  btn.onmouseleave = () => tl.pause();
     </script>
   </body>
