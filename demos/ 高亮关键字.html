@@ -1,43 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> 高亮关键字</title>
+    <style></style>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> 高亮关键字</title>
-  <style>
+  <body>
+    <div id="box"></div>
 
-
-
-  </style>
-</head>
-
-<body>
-  <div id="box">
-
-
-  </div>
-
-  <script>
-    const dom = document.getElementById('box')
-    const str = `作为一名前端开发者`
-    function setWords(str, key) {
-      let reg
-      if (key) {
-        reg = new RegExp(key, 'gi')
+    <script>
+      const dom = document.getElementById("box");
+      const str = `作为一名前端开发者`;
+      function setWords(str, key) {
+        let reg;
+        if (key) {
+          reg = new RegExp(key, "ig");
+        }
+        let s = "";
+        if (reg) {
+          s += str.replace(key, `<em style="color: red;">${key}</em>`);
+        } else {
+          s += key;
+        }
+        dom.innerHTML = s;
       }
-      let s = ''
-      if (reg) {
-        s += str.replace(key, `<em style="color: red;">${key}</em>`)
-      } else {
-        s += key
-      }
-      dom.innerHTML = s
-    }
 
-    setWords(str, '前端开发者')
-
-  </script>
-</body>
-
+      setWords(str, "前端开发者");
+    </script>
+  </body>
 </html>
