@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>宽高比</title>
+    <style>
+      #item {
+        background-color: palevioletred;
+        width: 50%;
+        aspect-ratio: 4/3;
+        margin: 10px auto;
+      }
+      #item1 {
+        /* background-color: palevioletred; */
+        width: 50%;
+        margin: 0 auto;
+      }
+
+      #inner {
+        width: 100%;
+        padding-top: 75%;
+        height: 0;
+        position: relative;
+      }
+      #container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: aqua;
+        left: 0;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="item"></div>
+    <div id="item1">
+      <div id="inner">
+        <div id="container"></div>
+      </div>
+    </div>
+  </body>
+</html>
