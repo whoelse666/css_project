@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>鼠标移动的高亮边框效果</title>
+    <style>
+      html,
+      body {
+        background-color: black;
+      }
+      .container {
+        /* display: flex;
+        flex-wrap: wrap;
+        flex-grow: 1;
+        flex-shrink: 1;
+        gap: 10px; */
+        display: grid;
+        margin: 0 auto;
+        width: 90%;
+        margin-top: 1em;
+        color: #f0f0f0;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        text-align: center;
+      }
+      .card {
+        aspect-ratio: 4/3;
+        border-radius: 10px;
+        position: relative;
+        overflow: hidden;
+        background-color: rgb(47, 49, 49);
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(closest-side, rgba(255, 255, 255, 1), transparent);
+        transform: translate(var(--x, 1000px), var(--y, -1000px));
+      }
+
+      .inner {
+        position: absolute;
+        inset: 2px;
+        background-color: rgb(120, 123, 123);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card"><div class="inner">hello</div></div>
+      <div class="card"><div class="inner">hello</div></div>
+      <div class="card"><div class="inner">hello</div></div>
+      <div class="card"><div class="inner">hello</div></div>
+      <div class="card"><div class="inner">hello</div></div>
+      <div class="card"><div class="inner">hello</div></div>
+    </div>
+    <script>
+      const container = document.querySelector(".container");
+      const cards = document.querySelectorAll(".card");
+      container.onmousemove = e => {
+        for (const card of cards) {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          card.style.setProperty("--x", `${x}px`);
+          card.style.setProperty("--y", `${y}px`);
+        }
+      };
+    </script>
+  </body>
+</html>
