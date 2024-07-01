@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>代码雨效果</title>
+    <style>
+      body {
+        background: black;
+        color: #ffffff;
+        font-size: 10px;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    代码雨效果
+    <canvas id="bg"></canvas>
+    <script>
+      // 获取 canvas 元素
+      const cvs = document.getElementById("bg");
+      // 荻取窗口尺寸
+      const width = window.innerWidth * devicePixelRatio,
+        height = window.innerHeight * devicePixelRatio;
+      // 11 设置 canvas 尺寸为窗口尺寸
+      cvs.width = width;
+      cvs.height = height;
+
+      // 11 获取绘制上下文
+      const ctx = cvs.getContext("2d");
+      // 11 字体大小
+      const fontSize = 20 * devicePixelRatio;
+
+      // 1 列宽
+      const columnWidth = fontSize;
+      // 1! 列的数量
+      const columnCount = Math.floor(width / columnWidth);
+      // 11 每一列下一个文字是第几个文字
+      const nextChar = new Array(columnCount).fill(0);
+      function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+        ctx.fillRect(0, 0, width, height);
+        for (let i = 0; i < columnCount; i++) {
+          // 1/ 文字,颜色,宇体,字体大小,位置
+          const char = getRandomChar();
+          ctx.fillStyle = getRandomColor();
+          ctx.font = ` ${fontSize}px "Roboto Mono"`;
+          const x = columnCount * i;
+          const index = nextChar[i];
+          const y = (index + 1) * fontSize;
+          ctx.fillText(char, x, y);
+          if (y > height && Math.random() > 0.99) {
+            nextChar[i] = 0;
+          } else {
+            nextChar[i]++;
+          }
+        }
+      }
+      function getRandomColor() {
+        // 生成随机的 RGB 值
+        var r = Math.floor(Math.random() * 256);
+        var g = Math.floor(Math.random() * 256);
+        var b = Math.floor(Math.random() * 256);
+
+        // 返回随机颜色的字符串表示
+        return "rgb(" + r + ", " + g + ", " + b + ")";
+      }
+
+      function getRandomChar() {
+        // 定义可能的字符范围
+        var allChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        // 生成一个随机索引
+        var randomIndex = Math.floor(Math.random() * allChars.length);
+        // 返回随机索引对应的字符
+        return allChars.charAt(randomIndex);
+      }
+
+      draw();
+      setInterval(draw, 40);
+    </script>
+  </body>
+</html>
