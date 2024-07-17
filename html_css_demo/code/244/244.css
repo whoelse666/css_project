@@ -41,11 +41,11 @@ body{
     animation: marquee 8s linear infinite;
 }
 .marquee-clear{
-    position: absolute;
+    /* position: absolute;
     inset: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 }
 
 /* 定义动画 */
