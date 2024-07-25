@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>水波进度动画</title>
+    <style>
+      .wave-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color:blue;
+      }
+
+      .main {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: #fff;
+        border: #fff solid 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+      .main-number {
+        font-size: 100px;
+        z-index: 1;
+        user-select: none;
+      }
+      @keyframes rotateAnimation {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .wave {
+        position: absolute;
+        top: 120px;
+        width: 400px;
+        height: 400px;
+        background: rgb(168, 168, 231);
+        border-radius: 40%;
+        animation: rotateAnimation 2s linear infinite;
+      }
+
+      .percent-bar {
+        width: 200px;
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wave-container">
+      <!-- 水缸 -->
+      <div class="main">
+        <!-- 百分比数字 -->
+        <!-- <div class="main-number">50</div> -->
+        <!-- 水波效果 -->
+        <div ref="wave" class="wave"></div>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
