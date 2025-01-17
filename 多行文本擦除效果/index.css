@@ -1,0 +1,48 @@
+html {
+  background-color: #000;
+}
+
+#box {
+  padding: 20px;
+  width: 80%;
+  height: auto;
+  position: relative;
+
+  color: #ffffff;
+  line-height: 2;
+  text-indent: 2em;
+  margin: 1em auto;
+  font-family: '行楷-简' Courier, monospace;
+}
+
+
+.txt1,
+.txt2 {
+  position: absolute;
+  top: 0;
+  inset: 0
+}
+
+
+
+
+@property --p {
+  /* https: //developer.mozilla.org/zh-CN/docs/Web/CSS/@property */
+  syntax: "<percentage>";
+  initial-value: 0%;
+  inherits: false;
+}
+
+
+.txt_span {
+  --p: 0%;
+  background: linear-gradient(to right, transparent var(--p), #000 calc(var(--p) + 1%));
+  color: transparent;
+  animation: erase 5s forwards linear;
+}
+
+@keyframes erase {
+  to {
+    --p: 100%;
+  }
+}
