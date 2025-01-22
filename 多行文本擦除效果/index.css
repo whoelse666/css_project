@@ -23,9 +23,6 @@ html {
   inset: 0
 }
 
-
-
-
 @property --p {
   /* https: //developer.mozilla.org/zh-CN/docs/Web/CSS/@property */
   syntax: "<percentage>";
