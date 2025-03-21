@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouse Trail Effect</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background-color: black;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    
+    .content {
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      font-size: 1.2rem;
+    }
+    
+    .trail-element {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(96, 165, 250, 0.8) 0%, rgba(139, 92, 246, 0.8) 100%);
+      transition: opacity 0.2s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1>Mouse Trail Effect</h1>
+    <p>Move your cursor around to see the effect</p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const body = document.body;
+      const maxTrailElements = 15;
+      const trailElements = [];
+      
+      // Create trail elements and add them to the DOM
+      for (let i = 0; i < maxTrailElements; i++) {
+        const element = document.createElement('div');
+        element.className = 'trail-element';
+        element.style.width = '30px';
+        element.style.height = '30px';
+        element.style.opacity = '0';
+        body.appendChild(element);
+        trailElements.push({
+          element: element,
+          x: 0,
+          y: 0
+        });
+      }
+      
+      // Track mouse position
+      let mouseX = 0;
+      let mouseY = 0;
+      
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+      
+      // Animation function
+      function animateTrail() {
+        // Add new position to the beginning of the array
+        trailElements.unshift({
+          element: trailElements[maxTrailElements - 1].element,
+          x: mouseX,
+          y: mouseY
+        });
+        
+        // Remove the last element
+        trailElements.pop();
+        
+        // Update positions and styles of all elements
+        trailElements.forEach((trail, index) => {
+          const { element } = trail;
+          
+          // Calculate size based on position in the trail
+          const size = Math.max(8, 30 - index * 1.5);
+          
+          // Calculate opacity based on position in the trail
+          const opacity = 1 - index * 0.06;
+          
+          // Calculate blur based on position in the trail
+          const blur = index * 0.8;
+          
+          // Update element style
+          element.style.width = `${size}px`;
+          element.style.height = `${size}px`;
+          element.style.opacity = opacity;
+          element.style.filter = `blur(${blur}px)`;
+          element.style.left = `${trail.x}px`;
+          element.style.top = `${trail.y}px`;
+        });
+        
+        requestAnimationFrame(animateTrail);
+      }
+      
+      // Start animation
+      animateTrail();
+    });
+  </script>
+</body>
+</html>
