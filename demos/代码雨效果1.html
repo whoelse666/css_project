@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>代码雨</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #000;
+      cursor: none;
+    }
+
+    canvas {
+      display: block;
+    }
+
+    #fps {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      color: #0F0;
+      font-family: monospace;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 5px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="codeRain"></canvas>
+  <div id="fps">FPS: 0</div>
+
+  <script>
+    const canvas = document.getElementById('codeRain')
+    const ctx = canvas.getContext('2d')
+    const fpsElement = document.getElementById('fps')
+
+    // 初始化画布
+    function initCanvas() {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+    }
+    initCanvas()
+
+    // 扩展字符集
+    const chars = '01日ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍｦｲｸｺｿﾁﾄﾉﾌﾔﾖﾙﾚﾛﾝ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    const fontSize = 18
+    let columns = Math.floor(canvas.width / fontSize)
+
+    // 每列的下落位置和速度
+    const drops = new Array(columns).fill(0)
+    const speeds = new Array(columns).fill(0).map(() => Math.random() * 0.5 + 0.5)
+
+    // 鼠标位置
+    let mouseX = -100
+    let mouseY = -100
+
+    // FPS计算
+    let lastTime = performance.now()
+    let fps = 0
+
+    // 颜色函数
+    function getRainColor(y) {
+      const hue = 120 + (y / canvas.height) * 60 // 从绿色渐变到青色
+      const lightness = 30 + (y / canvas.height) * 40 // 亮度渐变
+      return `hsl(${hue}, 100%, ${lightness}%)`
+    }
+
+    // 绘制函数
+    function draw() {
+      // 计算FPS
+      const now = performance.now()
+      fps = Math.round(1000 / (now - lastTime))
+      lastTime = now
+      fpsElement.textContent = `FPS: ${fps}`
+
+      // 半透明背景制造拖尾效果
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      ctx.font = `${fontSize}px "Microsoft YaHei", monospace`
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)]
+        const x = i * fontSize
+        const y = drops[i] * fontSize
+
+        // 鼠标交互效果
+        const distToMouse = Math.sqrt(Math.pow(x - mouseX, 2) + Math.pow(y - mouseY, 2))
+        if (distToMouse < 100) {
+          ctx.fillStyle = '#FFF'
+          drops[i] += speeds[i] * 3 // 鼠标附近加速
+        } else {
+          ctx.fillStyle = getRainColor(y)
+          drops[i] += speeds[i]
+        }
+
+        ctx.fillText(text, x, y)
+
+        // 随机重置到顶部
+        if (y > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0
+          // 偶尔重置速度
+          if (Math.random() > 0.9) {
+            speeds[i] = Math.random() * 0.5 + 0.5
+          }
+        }
+      }
+
+      requestAnimationFrame(draw)
+    }
+
+    // 窗口大小调整
+    window.addEventListener('resize', () => {
+      initCanvas()
+      const newColumns = Math.floor(canvas.width / fontSize)
+
+      // 调整数组大小
+      while (drops.length < newColumns) {
+        drops.push(0)
+        speeds.push(Math.random() * 0.5 + 0.5)
+      }
+      while (drops.length > newColumns) {
+        drops.pop()
+        speeds.pop()
+      }
+    })
+
+    // 鼠标移动跟踪
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX
+      mouseY = e.clientY
+    })
+
+    window.addEventListener('mouseout', () => {
+      mouseX = -100
+      mouseY = -100
+    })
+
+    // 开始动画
+    draw();
+  </script>
+</body>
+
+</html>
